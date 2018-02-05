@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+TEMPLATE_FILE_NAME   = '.gitcommit_template'.freeze
+DEFINITION_FILE_NAME = '.git_consistent'.freeze
+PROJECT_ROOT         = `git rev-parse --show-toplevel 2> /dev/null`.chomp.freeze
+GIT_ROOT             = PROJECT_ROOT.length.zero? ? ENV['HOME'] : PROJECT_ROOT
+TEMPLATE_FILE_PATH   = File.join GIT_ROOT, TEMPLATE_FILE_NAME
+DEFINITION_FILE_PATH = File.join GIT_ROOT, DEFINITION_FILE_NAME
+
+DEFINITION = YAML.load_file DEFINITION_FILE_PATH
+
+def convert_line line
+  line.scan(/<.*?>/).each do |decoreted_term|
+    term = decoreted_term.gsub(/<|>/, '')
+
+    line.sub! decoreted_term, convert_term(term)
+  end
+  line
+end
+
+def convert_term term
+  term_definition = DEFINITION[term.to_sym]
+  case term_definition[:type]
+    when :enum
+      input_enum term, term_definition
+    when :string
+      input_string term, term_definition
+    when :text
+      input_text term, term_definition
+    else
+      raise 'Unkown type'
+  end
+end
+
+def input_enum term, term_definition
+  display_str = term_definition[:values].map { |v| "#{v[:name]}\t#{v[:description]}" }
+  selected    = select(display_str, header: "Select #{term}").split("\t").first
+  puts "#{term}: #{selected}"
+  selected
+end
+
+def input_string term, _term_definition
+  print "Input #{term} > "
+  gets.to_s.chomp
+end
+
+def input_text term, _term_definition
+  puts "Input #{term} (Ctrl-D) > "
+  $stdin.readlines.join.chomp
+end
+
+def select args, header: ''
+  `echo '#{args.join("\n")}' | fzf --reverse --cycle --header="#{header}"`.chomp
+end
+
+def commit message
+  `git commit -m "#{message}"`
+end
+
+File.open TEMPLATE_FILE_PATH do |file|
+  commit_message = file.each_line.map do |line|
+    next if line.start_with? '#'
+    convert_line line
+  end.join("\n")
+
+  commit commit_message
+end
