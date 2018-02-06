@@ -29,7 +29,7 @@ Please put follow two files to your project root dir.
 ```yml
 :type:
   :type: :enum
-  :required: false
+  :required: true
   :description: 'commit type'
   :values:
     -
@@ -46,11 +46,11 @@ Please put follow two files to your project root dir.
       :description: 'when writing docs'
 :subject:
   :type: :string
-  :required: false
+  :required: true
   :description: 'The subject contains succinct description of the change'
 :body:
   :type: :text
-  :required: true
+  :required: false
   :description: 'Body'
 ```
 
