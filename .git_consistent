@@ -19,6 +19,9 @@
       :name: test
       :description: 'when adding tests'
     -
+      :name: chore
+      :description: "when change other that don't modify code or test files"
+    -
       :name: remove
       :description: 'when removing function'
     -
