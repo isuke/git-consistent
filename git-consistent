@@ -5,9 +5,8 @@ require 'yaml'
 TEMPLATE_FILE_NAME   = '.gitcommit_template'.freeze
 DEFINITION_FILE_NAME = '.git_consistent'.freeze
 PROJECT_ROOT         = `git rev-parse --show-toplevel 2> /dev/null`.chomp.freeze
-GIT_ROOT             = PROJECT_ROOT.length.zero? ? ENV['HOME'] : PROJECT_ROOT
-TEMPLATE_FILE_PATH   = File.join GIT_ROOT, TEMPLATE_FILE_NAME
-DEFINITION_FILE_PATH = File.join GIT_ROOT, DEFINITION_FILE_NAME
+TEMPLATE_FILE_PATH   = File.exist?(File.join(PROJECT_ROOT, TEMPLATE_FILE_NAME)) ? File.join(PROJECT_ROOT, TEMPLATE_FILE_NAME) : File.join(ENV['HOME'], TEMPLATE_FILE_NAME)
+DEFINITION_FILE_PATH = File.exist?(File.join(PROJECT_ROOT, DEFINITION_FILE_NAME)) ? File.join(PROJECT_ROOT, DEFINITION_FILE_NAME) : File.join(ENV['HOME'], DEFINITION_FILE_NAME)
 
 DEFINITION = YAML.load_file DEFINITION_FILE_PATH
 
