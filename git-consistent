@@ -52,7 +52,7 @@ def input_text term, _term_definition
 end
 
 def select args, header: ''
-  `echo '#{args.join("\n")}' | fzf --reverse --cycle --header="#{header}"`.chomp
+  `echo "#{args.join("\n").gsub('"', '\"')}" | fzf --reverse --cycle --header="#{header}"`.chomp
 end
 
 def commit message
