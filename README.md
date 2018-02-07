@@ -59,3 +59,26 @@ Exec command.
 ```
 $ git consistent
 ```
+
+
+---
+
+# TODO
+
+## inline mode
+
+```sh
+$ git consistent --type="feat" --subject="implement new feature"
+```
+
+## format check
+
+```sh
+$ git consistent --type="feat" --subject="Implement new feature"
+The subject must begin with lowercase letters.
+
+$ git consistent --type="hoge" --subject="implement new feature"
+'hoge' is not defined.
+You should select follow values.
+'feat', 'fix', 'docs' and 'refactor'.
+```
