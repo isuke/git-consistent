@@ -1,55 +1,55 @@
-:type:
-  :type: :enum
-  :required: true
-  :description: 'commit type'
-  :values:
+type:
+  type: enum
+  required: true
+  description: 'commit type'
+  values:
     -
-      :name: feat
-      :description: 'when implementing function'
+      name: feat
+      description: 'when implementing function'
     -
-      :name: fix
-      :description: 'when fixing a bug'
+      name: fix
+      description: 'when fixing a bug'
     -
-      :name: refactor
-      :description: 'when refactoring'
+      name: refactor
+      description: 'when refactoring'
     -
-      :name: docs
-      :description: 'when writing docs'
+      name: docs
+      description: 'when writing docs'
     -
-      :name: test
-      :description: 'when adding tests'
+      name: test
+      description: 'when adding tests'
     -
-      :name: chore
-      :description: "when change other that don't modify code or test files"
+      name: chore
+      description: "when change other that don't modify code or test files"
     -
-      :name: remove
-      :description: 'when removing function'
+      name: remove
+      description: 'when removing function'
     -
-      :name: perf
-      :description: 'when improving performance'
+      name: perf
+      description: 'when improving performance'
     -
-      :name: ci
-      :description: 'when fixing the CI build'
+      name: ci
+      description: 'when fixing the CI build'
     -
-      :name: sec
-      :description: 'when dealing with security'
+      name: sec
+      description: 'when dealing with security'
     -
-      :name: up
-      :description: 'when upgrading dependencies'
+      name: up
+      description: 'when upgrading dependencies'
     -
-      :name: down
-      :description: 'when downgrading dependencies'
+      name: down
+      description: 'when downgrading dependencies'
     -
-      :name: tada
-      :description: 'when celebrating'
+      name: tada
+      description: 'when celebrating'
     -
-      :name: revert
-      :description: 'when reverts a previous commit'
-:subject:
-  :type: :string
-  :required: true
-  :description: 'The subject contains succinct description of the change'
-:body:
-  :type: :text
-  :required: false
-  :description: 'Body'
+      name: revert
+      description: 'when reverts a previous commit'
+subject:
+  type: string
+  required: true
+  description: 'The subject contains succinct description of the change'
+body:
+  type: text
+  required: false
+  description: 'Body'
