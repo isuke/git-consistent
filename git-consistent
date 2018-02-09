@@ -12,7 +12,7 @@ const templateFileName    = '.gitcommit_template'
 const definitionsFileName = '.git_consistent'
 const projectRoot = execSync(`git rev-parse --show-toplevel 2> /dev/null`).toString().trim()
 
-const version = '0.0.1'
+const version = '0.1.1'
 
 const loadDefinitions = (path) => {
   try {

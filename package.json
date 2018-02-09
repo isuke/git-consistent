@@ -1,6 +1,6 @@
 {
   "name": "git-consistent",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TODO",
   "bin": {
     "git-consistent": "git-consistent"
