@@ -111,7 +111,7 @@ const replaceTerm = (program, template, definition, term) => {
     if (_.isEmpty(value)) value = input(term, definition)
     // TODO: do loop if required and value is empty
   } else {
-    if (_.isEmpty(value)) throw new Error(`${term} is required.`)
+    if (_.isEmpty(value) && definition.required) throw new Error(`${term} is required.`)
   }
 
   return _.replace(template, `<${term}>`, value)
