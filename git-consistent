@@ -16,7 +16,7 @@ const red = '\u001b[31m'
 const green = '\u001b[32m'
 const reset = '\u001b[0m'
 
-const version = '0.1.1'
+const version = '0.2.0'
 
 const loadDefinitions = (path) => {
   return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
