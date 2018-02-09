@@ -8,7 +8,7 @@ You need install [fzf](https://github.com/junegunn/fzf).
 
 ```
 $ cd /path/to/bin
-$ curl -O https://raw.githubusercontent.com/isuke/git-consistent/master/git-consistent
+$ curl -O https://raw.githubusercontent.com/isuke/git-consistent/ruby/git-consistent
 $ chmod u+x git-consistent
 
 $ git config --global alias.con consistent # option

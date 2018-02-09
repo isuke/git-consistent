@@ -1,68 +1,145 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env node
 
-require 'yaml'
+const path      = require('path')
+const fs        = require('fs')
+const _         = require('lodash')
+const yaml      = require('js-yaml')
+const execSync  = require('child_process').execSync
+const program   = require('commander')
+const prompt    = require('prompt-sync')()
 
-TEMPLATE_FILE_NAME   = '.gitcommit_template'.freeze
-DEFINITION_FILE_NAME = '.git_consistent'.freeze
-PROJECT_ROOT         = `git rev-parse --show-toplevel 2> /dev/null`.chomp.freeze
-TEMPLATE_FILE_PATH   = File.exist?(File.join(PROJECT_ROOT, TEMPLATE_FILE_NAME)) ? File.join(PROJECT_ROOT, TEMPLATE_FILE_NAME) : File.join(ENV['HOME'], TEMPLATE_FILE_NAME)
-DEFINITION_FILE_PATH = File.exist?(File.join(PROJECT_ROOT, DEFINITION_FILE_NAME)) ? File.join(PROJECT_ROOT, DEFINITION_FILE_NAME) : File.join(ENV['HOME'], DEFINITION_FILE_NAME)
+const templateFileName    = '.gitcommit_template'
+const definitionsFileName = '.git_consistent'
+const projectRoot = execSync(`git rev-parse --show-toplevel 2> /dev/null`).toString().trim()
 
-DEFINITION = YAML.load_file DEFINITION_FILE_PATH
+const version = '0.0.1'
 
-def convert_line line
-  line.scan(/<.*?>/).each do |decoreted_term|
-    term = decoreted_term.gsub(/<|>/, '')
+const loadDefinitions = (path) => {
+  try {
+    return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
+  } catch (e) {
+    throw e
+  }
+}
 
-    line.sub! decoreted_term, convert_term(term)
-  end
-  line
-end
+const setOptions = (program, definitions, terms) => {
+  if (_.isEmpty(terms)) {
+    return program
+  } else {
+    const term = terms[0]
+    const valueStr = definitions[term].required ? `<${term}>` : `[${term}]`
+    const defaultValue = definitions[term].required ? undefined : ''
+    program.option(`--${term} ${valueStr}`, definitions[term].description, defaultValue)
+    return setOptions(program, definitions, _.tail(terms))
+  }
+}
 
-def convert_term term
-  term_definition = DEFINITION[term.to_sym]
-  case term_definition[:type]
-    when :enum
-      input_enum term, term_definition
-    when :string
-      input_string term, term_definition
-    when :text
-      input_text term, term_definition
-    else
-      raise 'Unkown type'
-  end
-end
+const createProgram = (program, definitions, terms) => {
+  return setOptions(program, definitions, terms)
+    .option(`-d, --dry-run`    , 'run dry-run mode')
+    .option(`-i, --interactive`, 'run interactive mode')
+    .version(version)
+    .parse(process.argv)
+}
 
-def input_enum term, term_definition
-  display_str = term_definition[:values].map { |v| "#{v[:name]}\t#{v[:description]}" }
-  selected    = select(display_str, header: "Select #{term}").split("\t").first
-  puts "#{term}: #{selected}"
-  selected
-end
+const select = (term, definition) => {
+  const header = `Select ${term}: `
+  const values = _.map(definition.values, function (value) { return value.name }) // TODO: description
+  const command = `echo '${values.join("\n")}' | fzf --reverse --cycle --header="${header}"`
 
-def input_string term, _term_definition
-  print "Input #{term} > "
-  gets.to_s.chomp
-end
+  value = execSync(command, { stdio: ['inherit', 'pipe', 'inherit'], shell: true }).toString().trim()
+  console.log(`${header}${value}`)
+  return value
+}
 
-def input_text term, _term_definition
-  puts "Input #{term} (Ctrl-D) > "
-  $stdin.readlines.join.chomp
-end
+const inputString = (term, _definition) => {
+  return prompt(`Enter ${term}: `)
+}
 
-def select args, header: ''
-  `echo "#{args.join("\n").gsub('"', '\"')}" | fzf --reverse --cycle --header="#{header}"`.chomp
-end
+const inputText = (term, _definition) => {
+  console.log(`Enter ${term} multiline:`)
+  let values = []
+  let value = ""
 
-def commit message
-  `git commit -m "#{message}"`
-end
+  do {
+    value = prompt()
+    values.push(value)
+  } while (!_.isEmpty(value))
 
-File.open TEMPLATE_FILE_PATH do |file|
-  commit_message = file.each_line.map do |line|
-    next if line.start_with? '#'
-    convert_line line
-  end.join("\n")
+  return values.join("\n")
+}
 
-  commit commit_message
-end
+const input = (term, definition) => {
+  const type = definition.type
+  let inputValue
+  switch (type) {
+    case 'enum':
+      inputValue = select(term, definition)
+      break
+    case 'string':
+      inputValue = inputString(term, definition)
+      break
+    case 'text':
+      inputValue = inputText(term, definition)
+      break
+    default:
+      throw new Error(`${type} is not defined.`)
+  }
+  checkValue(inputValue)
+  return inputValue
+}
+
+const checkValue = (value) => {
+  // TODO
+}
+
+const replaceTerms = (program, template, definitions, terms) => {
+  if (_.isEmpty(terms)) {
+    return template
+  } else {
+    const term = terms[0]
+    const definition = definitions[term]
+    template = replaceTerm(program, template, definition, term)
+    return replaceTerms(program, template, definitions, _.tail(terms))
+  }
+}
+
+const replaceTerm = (program, template, definition, term) => {
+  let value = program[term]
+
+  if (program.interactive) {
+    if (_.isEmpty(value)) value = input(term, definition)
+    // TODO: do loop if required and value is empty
+  } else {
+    if (_.isEmpty(value)) throw new Error(`${term} is required.`)
+  }
+
+  return _.replace(template, `<${term}>`, value)
+}
+
+const gitCommit = (commitMessage, dryRun = false) => {
+  if (dryRun) {
+    console.log("-------------------------")
+    console.log(commitMessage)
+    console.log("-------------------------")
+  } else {
+    execSync(`git commit -m "${commitMessage}"`)
+  }
+}
+
+const main = (program, template, definitions, terms) => {
+  const commitMessage = replaceTerms(program, template, definitions, terms)
+  gitCommit(commitMessage.trim(), program.dryRun)
+}
+
+//
+// Main
+//
+const rootPath            = projectRoot === "" ? process.env.HOME : projectRoot
+const templateFilePath    = path.join(rootPath, templateFileName)
+const definitionsFilePath = path.join(rootPath, definitionsFileName)
+const template            = fs.readFileSync(templateFilePath, 'utf8')
+const definitions         = loadDefinitions(definitionsFilePath)
+const terms               = _.keys(definitions)
+
+main(createProgram(program, definitions, terms), template, definitions, terms)
