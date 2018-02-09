@@ -29,8 +29,7 @@ const setOptions = (program, definitions, terms) => {
     const term = terms[0]
     const optionName = term == 'subject' ? `-m, --${term}` : `--${term}`
     const valueStr = definitions[term].required ? `<${term}>` : `[${term}]`
-    const defaultValue = definitions[term].required ? undefined : ''
-    program.option(`${optionName} ${valueStr}`, definitions[term].description, defaultValue)
+    program.option(`${optionName} ${valueStr}`, definitions[term].description)
     return setOptions(program, definitions, _.tail(terms))
   }
 }
@@ -109,8 +108,13 @@ const replaceTerm = (program, template, definition, term) => {
   let value = program[term]
 
   if (program.interactive) {
-    if (_.isEmpty(value)) value = input(term, definition)
-    // TODO: do loop if required and value is empty
+    if (_.isUndefined(value)) {
+      value = input(term, definition)
+      while (definition.required && _.isEmpty(value)) {
+        console.log(`${term} is required`)
+        value = input(term, definition)
+      }
+    }
   } else {
     if (_.isEmpty(value) && definition.required) throw new Error(`${term} is required.`)
   }
