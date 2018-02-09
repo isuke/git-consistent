@@ -12,14 +12,14 @@ const templateFileName    = '.gitcommit_template'
 const definitionsFileName = '.git_consistent'
 const projectRoot = execSync(`git rev-parse --show-toplevel 2> /dev/null`).toString().trim()
 
+const red = '\u001b[31m'
+const green = '\u001b[32m'
+const reset = '\u001b[0m'
+
 const version = '0.1.1'
 
 const loadDefinitions = (path) => {
-  try {
-    return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
-  } catch (e) {
-    throw e
-  }
+  return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
 }
 
 const setOptions = (program, definitions, terms) => {
@@ -136,11 +136,15 @@ const main = (program, template, definitions, terms) => {
 //
 // Main
 //
-const rootPath            = projectRoot === "" ? process.env.HOME : projectRoot
-const templateFilePath    = path.join(rootPath, templateFileName)
-const definitionsFilePath = path.join(rootPath, definitionsFileName)
-const template            = fs.readFileSync(templateFilePath, 'utf8')
-const definitions         = loadDefinitions(definitionsFilePath)
-const terms               = _.keys(definitions)
+try {
+  const rootPath = projectRoot === "" ? process.env.HOME : projectRoot
+  const templateFilePath = path.join(rootPath, templateFileName)
+  const definitionsFilePath = path.join(rootPath, definitionsFileName)
+  const template = fs.readFileSync(templateFilePath, 'utf8')
+  const definitions = loadDefinitions(definitionsFilePath)
+  const terms = _.keys(definitions)
 
-main(createProgram(program, definitions, terms), template, definitions, terms)
+  main(createProgram(program, definitions, terms), template, definitions, terms)
+} catch (e) {
+  console.error(`${red}${e.message}${reset}`)
+}
