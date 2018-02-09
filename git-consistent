@@ -36,8 +36,9 @@ const setOptions = (program, definitions, terms) => {
 
 const createProgram = (program, definitions, terms) => {
   return setOptions(program, definitions, terms)
-    .option(`-d, --dry-run`    , 'run dry-run mode')
-    .option(`-i, --interactive`, 'run interactive mode')
+    .option(`-d, --dry-run`, 'run dry-run mode', false)
+    .option(`-i, --interactive`, 'run interactive mode', false)
+    .option(`-s, --skip-options`, 'skip not required term input (interactive mode only)', false)
     .version(version)
     .parse(process.argv)
 }
@@ -109,7 +110,11 @@ const replaceTerm = (program, template, definition, term) => {
 
   if (program.interactive) {
     if (_.isUndefined(value)) {
-      value = input(term, definition)
+      if (definition.required || !program.skipOptions) {
+        value = input(term, definition)
+      } else {
+        value = ''
+      }
       while (definition.required && _.isEmpty(value)) {
         console.log(`${term} is required`)
         value = input(term, definition)
