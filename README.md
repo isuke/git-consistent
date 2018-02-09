@@ -77,6 +77,17 @@ Enter body multiline:
 This is amazing feature.
 ```
 
+## decorate
+
+```yml
+scope:
+  type: text
+  required: false
+  description: 'The scope could be specifying place of the commit change.'
+  prefix: '('
+  suffix: ')'
+```
+
 ---
 
 # TODO
@@ -93,8 +104,6 @@ $ git consistent --type="foo" --subject="implement new feature"
 You should select follow values.
 'feat', 'fix', 'docs' and 'refactor'.
 ```
-
-### decorate
 
 ## develop
 ### test
