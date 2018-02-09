@@ -27,9 +27,10 @@ const setOptions = (program, definitions, terms) => {
     return program
   } else {
     const term = terms[0]
+    const optionName = term == 'subject' ? `-m, --${term}` : `--${term}`
     const valueStr = definitions[term].required ? `<${term}>` : `[${term}]`
     const defaultValue = definitions[term].required ? undefined : ''
-    program.option(`--${term} ${valueStr}`, definitions[term].description, defaultValue)
+    program.option(`${optionName} ${valueStr}`, definitions[term].description, defaultValue)
     return setOptions(program, definitions, _.tail(terms))
   }
 }
