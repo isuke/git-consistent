@@ -1,6 +1,6 @@
 {
   "name": "git-consistent",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "TODO",
   "bin": {
     "git-consistent": "git-consistent"
@@ -10,6 +10,9 @@
   "license": "MIT",
   "private": false,
   "preferGlobal": true,
+  "scripts": {
+    "deploy": "./deploy.sh"
+  },
   "dependencies": {
     "commander": "^2.14.1",
     "js-yaml": "^3.10.0",
