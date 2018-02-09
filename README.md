@@ -55,6 +55,12 @@ Please put follow two files to your project root dir.
   :description: 'Body'
 ```
 
+## help
+
+```sh
+$ git-consistent --help
+```
+
 ## inline mode
 
 ```sh
