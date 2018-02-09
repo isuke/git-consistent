@@ -4,14 +4,15 @@
 
 ## Install
 
-You need install [fzf](https://github.com/junegunn/fzf).
+You need install [fzf](https://github.com/junegunn/fzf) if you use interactive mode.
 
 ```
-$ cd /path/to/bin
-$ curl -O https://raw.githubusercontent.com/isuke/git-consistent/ruby/git-consistent
-$ chmod u+x git-consistent
+$ npm install -g git-consistent
+# or
+$ yarn add global git-consistent
 
-$ git config --global alias.con consistent # option
+# options
+$ git config --global alias.con consistent
 ```
 
 ## Usage
@@ -19,7 +20,7 @@ $ git config --global alias.con consistent # option
 Please put follow two files to your project root dir.
 
 `.gitcommit_template`
-```text:
+```text
 <type>: <subject>
 
 <body>
@@ -54,24 +55,28 @@ Please put follow two files to your project root dir.
   :description: 'Body'
 ```
 
-Exec command.
+## inline mode
 
-```
-$ git consistent
+```sh
+$ git consistent --type="feat" --subject="implement new feature" --body="This is amazing feature."
 ```
 
+## interactive mode
+
+```sh
+$ git consistent -i
+Select type: feat
+Enter subject: implement new feature
+Enter body multiline:
+This is amazing feature.
+```
 
 ---
 
 # TODO
 
-## inline mode
-
-```sh
-$ git consistent --type="feat" --subject="implement new feature"
-```
-
-## format check
+## feature
+### format check
 
 ```sh
 $ git consistent --type="feat" --subject="Implement new feature"
@@ -81,4 +86,13 @@ $ git consistent --type="hoge" --subject="implement new feature"
 'hoge' is not defined.
 You should select follow values.
 'feat', 'fix', 'docs' and 'refactor'.
+```
+
+### decorate
+
+## develop
+### test
+
+```sh
+$ yarn run test
 ```

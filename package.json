@@ -8,6 +8,11 @@
   "repository": "git@github.com:isuke/git-consistent.git",
   "author": "isuke <isuke770@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "git",
+    "commit",
+    "commitizen"
+  ],
   "private": false,
   "preferGlobal": true,
   "scripts": {

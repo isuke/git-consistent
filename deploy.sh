@@ -19,7 +19,7 @@ if [ $? -eq 0 ]; then
 fi
 
 printf "${GEEEN}Rewite git-consistent\n${RESET}"
-gsed -r -i "s/version = '[0-9]+\.[0-9]+\.[0-9]+'/version = '$VERSION'/g" src/index.js
+gsed -r -i "s/const version = '[0-9]+\.[0-9]+\.[0-9]+'/const version = '$VERSION'/g" git-consistent
 git add git-consistent
 
 printf "${GEEEN}Rewite package.json\n${RESET}"
@@ -27,7 +27,7 @@ gsed -r -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$VERSION\"/
 git add package.json
 
 printf "${GEEEN}git commit\n${RESET}"
-git commit -m "tada: Upgrade to v$VERSION"
+git commit -m "tada: upgrade to v$VERSION"
 git tag v$VERSION
 
 printf "${GEEEN}Please command 'git push origin master && git push origin v$VERSION && yarn publish'\n${RESET}"
