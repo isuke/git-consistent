@@ -9,7 +9,7 @@ You need install [fzf](https://github.com/junegunn/fzf) if you use interactive m
 ```
 $ npm install -g git-consistent
 # or
-$ yarn add global git-consistent
+$ yarn global add git-consistent
 
 # options
 $ git config --global alias.con consistent
