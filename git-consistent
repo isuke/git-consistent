@@ -124,7 +124,13 @@ const replaceTerm = (program, template, definition, term) => {
     if (_.isEmpty(value) && definition.required) throw new Error(`${term} is required.`)
   }
 
-  return _.replace(template, `<${term}>`, value)
+  let decoratedValue = value
+  if (!_.isEmpty(value)) {
+    if (definition.prefix) decoratedValue = definition.prefix + decoratedValue
+    if (definition.suffix) decoratedValue = decoratedValue + definition.suffix
+  }
+
+  return _.replace(template, `<${term}>`, decoratedValue)
 }
 
 const gitCommit = (commitMessage, dryRun = false) => {

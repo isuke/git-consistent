@@ -88,8 +88,8 @@ This is amazing feature.
 $ git consistent --type="feat" --subject="Implement new feature"
 The subject must begin with lowercase letters.
 
-$ git consistent --type="hoge" --subject="implement new feature"
-'hoge' is not defined.
+$ git consistent --type="foo" --subject="implement new feature"
+'foo' is not defined.
 You should select follow values.
 'feat', 'fix', 'docs' and 'refactor'.
 ```

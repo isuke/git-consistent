@@ -2,6 +2,7 @@ type:
   type: enum
   required: true
   description: 'commit type'
+  suffix: ': '
   values:
     -
       name: feat
