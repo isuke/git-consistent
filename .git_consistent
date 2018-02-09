@@ -2,7 +2,6 @@ type:
   type: enum
   required: true
   description: 'commit type'
-  suffix: ': '
   values:
     -
       name: feat
@@ -46,6 +45,16 @@ type:
     -
       name: revert
       description: 'when reverts a previous commit'
+scope:
+  type: enum
+  required: false
+  description: 'The scope could be specifying place of the commit change.'
+  prefix: '('
+  suffix: ')'
+  values:
+    -
+      name: "main"
+      description: 'git-consistent'
 subject:
   type: string
   required: true

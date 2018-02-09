@@ -44,13 +44,17 @@ const createProgram = (program, definitions, terms) => {
 }
 
 const select = (term, definition) => {
+  const none = "(none)"
   const header = `Select ${term}: `
-  const values = _.map(definition.values, function (value) { return value.name }) // TODO: description
-  const command = `echo '${values.join("\n")}' | fzf --reverse --cycle --header="${header}"`
+  const choices = _.map(definition.values, function (value) { return `${value.name}\t${value.description}` })
+  if (!definition.required) choices.unshift(`\t${none}`)
+  const command = `echo '${_.replace(choices.join("\n"), "'", '"')}' | fzf --reverse --cycle --header="${header}"`
 
-  value = execSync(command, { stdio: ['inherit', 'pipe', 'inherit'], shell: true }).toString().trim()
+  const selectedValue = execSync(command, { stdio: ['inherit', 'pipe', 'inherit'], shell: true }).toString().trim()
+  const value = selectedValue.split("\t")[0]
+  const v = value === none ? '' : value
   console.log(`${header}${value}`)
-  return value
+  return v
 }
 
 const inputString = (term, _definition) => {

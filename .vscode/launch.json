@@ -13,7 +13,9 @@
       "args": [
         "-i",
         "--type='feat'",
-        "--subject='add skip-options option'",
+        // "--scope='main'",
+        "--subject='this is test'",
+        "--body='This is test.'",
         "-d"
       ]
     }
