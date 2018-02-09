@@ -55,19 +55,13 @@ Please put follow two files to your project root dir.
   :description: 'Body'
 ```
 
-## help
-
-```sh
-$ git-consistent --help
-```
-
-## inline mode
+### inline mode
 
 ```sh
 $ git consistent --type="feat" --subject="implement new feature" --body="This is amazing feature."
 ```
 
-## interactive mode
+### interactive mode
 
 ```sh
 $ git consistent -i
@@ -77,7 +71,31 @@ Enter body multiline:
 This is amazing feature.
 ```
 
-## decorate
+## `.git_consistent` format
+
+**TODO**
+
+## options
+
+| Option | Default | Description |
+| ------ | ------- | ----------- |
+| `-d, --dry-run` | false | run dry-run mode |
+| `-i, --interactive` | false | run interactive mode |
+| `-s, --skip-options` | false | skip not required term input (interactive mode only) |
+| `-V, --version` | | output the version number |
+
+## Output usage information
+
+```sh
+$ git-consistent --help
+```
+
+## Samples
+
+- [sample01](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
+
+## Advance
+### Decorate
 
 ```yml
 scope:
@@ -104,6 +122,8 @@ $ git consistent --type="foo" --subject="implement new feature"
 You should select follow values.
 'feat', 'fix', 'docs' and 'refactor'.
 ```
+
+### support [git-duet](https://github.com/git-duet/git-duet)
 
 ## develop
 ### test
