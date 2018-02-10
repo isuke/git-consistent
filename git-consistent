@@ -86,7 +86,7 @@ const inputText = (term, _definition) => {
     values.push(value)
   } while (!_.isEmpty(value))
 
-  return values.join("\n")
+  return values.join("\n").trim()
 }
 
 const input = (term, definition) => {
@@ -160,7 +160,7 @@ const replaceTerm = (program, template, definition, term) => {
   let value = definition.type === 'variable' ? program[definition.origin] : program[term]
 
   if (program.interactive) {
-    if (_.isUndefined(value)) {
+    if (_.isUndefined(value) || _.isNull(value)) {
       if (definition.required || !program.skipOptions) {
         value = input(term, definition)
       } else {
