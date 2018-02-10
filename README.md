@@ -108,6 +108,38 @@ scope:
   suffix: ')'
 ```
 
+### format check
+
+```yml
+subject:
+  type: string
+  required: true
+  description: 'The subject contains succinct description of the change'
+  rules:
+    firstLatter: lower
+    dotAtEnd: false
+    ascii: false
+```
+
+```sh
+$ git consistent --subject="Write documents."
+subject must be first latter is lowercase.
+subject should put dot (.) at the end.
+
+$ git consistent --subject="ドキュメントを書いた"
+subject must be first latter is lowercase.
+subject should only alphabet.
+
+$ git consistent -i
+Enter subject:
+subject is required.
+Enter subject: Write documents.
+subject must be first latter is lowercase.
+subject should put dot (.) at the end.
+Enter subject: write document
+```
+
+
 ### git-duet
 
 Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
@@ -128,21 +160,7 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 ---
 
 # TODO
-
-## feature
-### format check
-
-```sh
-$ git consistent --type="feat" --subject="Implement new feature"
-The subject must begin with lowercase letters.
-
-$ git consistent --type="foo" --subject="implement new feature"
-'foo' is not defined.
-You should select follow values.
-'feat', 'fix', 'docs' and 'refactor'.
-```
-
-## develop
+## Develop
 ### test
 
 ```sh

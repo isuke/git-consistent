@@ -103,12 +103,42 @@ const input = (term, definition) => {
     default:
       throw new Error(`${type} is not defined.`)
   }
-  checkValue(inputValue)
   return inputValue
 }
 
-const checkValue = (value) => {
-  // TODO
+const checkValue = (term, value, definition) => {
+  const rules = definition.rules
+  const errorMessages = []
+
+  if (definition.required && _.isEmpty(value)) errorMessages.push(`${term} is required.`)
+
+  _.forEach(rules, (ruleSetting, ruleName) => {
+    switch (ruleName) {
+      case 'firstLatter':
+        if (['small', 'lower', 'lowercase'].includes(ruleSetting) && /^[^a-z].*/.test(value)) {
+          errorMessages.push(`${term} must be first latter is lowercase.`)
+        } else if (['big', 'upper', 'uppercase'].includes(ruleSetting) && /^[^A-Z].*/.test(value)) {
+          errorMessages.push(`${term} must be first latter is uppercase.`)
+        }
+        break
+      case 'dotAtEnd':
+        if (ruleSetting) {
+          if (/[^\.]$/.test(value)) errorMessages.push(`${term} should not put dot (.) at the end.`)
+        } else {
+          if (/\.$/.test(value)) errorMessages.push(`${term} should put dot (.) at the end.`)
+        }
+        break
+      case 'ascii':
+        if (!ruleSetting && /[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]/.test(value)) {
+          errorMessages.push(`${term} should only alphabet.`)
+        }
+        break
+      default:
+        throw new Error(`${ruleName} is not defined.`)
+    }
+  })
+
+  return errorMessages.join("\n")
 }
 
 const replaceTerms = (program, template, definitions, terms) => {
@@ -132,14 +162,19 @@ const replaceTerm = (program, template, definition, term) => {
       } else {
         value = ''
       }
-      while (definition.required && _.isEmpty(value)) {
-        console.log(`${warningColor}${term} is required${reset}`)
+      let errorMessages = checkValue(term, value, definition)
+      while (!_.isEmpty(errorMessages)) {
+        console.log(`${warningColor}${errorMessages}${reset}`)
         value = input(term, definition)
+        errorMessages = checkValue(term, value, definition)
       }
     }
   } else {
     if (_.isEmpty(value) && definition.required) throw new Error(`${term} is required.`)
   }
+
+  const errorMessages = checkValue(term, value, definition)
+  if (!_.isEmpty(errorMessages)) throw new Error(errorMessages)
 
   let decoratedValue = value
   if (!_.isEmpty(value)) {

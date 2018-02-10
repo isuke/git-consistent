@@ -59,8 +59,16 @@ subject:
   type: string
   required: true
   description: 'The subject contains succinct description of the change'
+  rules:
+    firstLatter: lower
+    dotAtEnd: false
+    ascii: false
 body:
   type: text
   default: ''
   required: false
   description: 'Body'
+  rules:
+    firstLatter: upper
+    dotAtEnd: true
+    ascii: false

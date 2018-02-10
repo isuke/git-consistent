@@ -13,10 +13,9 @@
       "args": [
         "-i",
         "--type='feat'",
-        // "--scope='main'",
-        "--subject='this is test'",
-        "--body='This is test.'",
-        "-d"
+        "--scope=''",
+        // "--subject='this is test'",
+        "-D"
       ]
     }
   ]
