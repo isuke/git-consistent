@@ -94,6 +94,7 @@ This is amazing feature.
 | `-D, --dry-run` | false | run dry-run mode |
 | `-i, --interactive` | false | run interactive mode |
 | `-s, --skip-options` | false | skip not required term input (interactive mode only) |
+| `-S, --silent` | false | dont show commit command |
 | `-V, --version` | | output the version number |
 
 ## Output usage information

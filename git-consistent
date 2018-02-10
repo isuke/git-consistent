@@ -50,10 +50,11 @@ const setOptions = (program, definitions, terms) => {
 
 const createProgram = (program, definitions, terms) => {
   return setOptions(program, definitions, terms)
-    .option(`-d, --duet`, 'run git-duet mode', false)
-    .option(`-D, --dry-run`, 'run dry-run mode', false)
-    .option(`-i, --interactive`, 'run interactive mode', false)
-    .option(`-s, --skip-options`, 'skip not required term input (interactive mode only)', false)
+    .option(`-d, --duet`, 'run git-duet mode')
+    .option(`-D, --dry-run`, 'run dry-run mode')
+    .option(`-i, --interactive`, 'run interactive mode')
+    .option(`-s, --skip-options`, 'skip not required term input (interactive mode only)')
+    .option(`-S, --silent`, "don't show commit command")
     .version(version)
     .parse(process.argv)
 }
@@ -196,26 +197,29 @@ const replaceTerm = (program, template, definition, term) => {
   return _.replace(template, `<${term}>`, decoratedValue)
 }
 
-const gitCommit = (commitMessage, duet = false, dryRun = false) => {
+const gitCommit = (commitMessage, duet = false, silent = false, dryRun = false) => {
+  let command
+  if (duet) {
+    command = `git duet-commit -m "${commitMessage}"`
+  } else {
+    command = `git commit -m "${commitMessage}"`
+  }
+
+  if (!silent) console.log(`${infoColor}${command}${reset}`)
+
   if (dryRun) {
     console.log("-------------------------")
     console.log(commitMessage)
     console.log("-------------------------")
   } else {
-    let command
-    if (duet) {
-      command = `git duet-commit -m "${commitMessage}"`
-    } else {
-      command = `git commit -m "${commitMessage}"`
-    }
-    console.log(`${infoColor}${command}${reset}`)
     execSync(command)
   }
 }
 
 const main = (program, template, definitions, terms) => {
   const commitMessage = replaceTerms(program, template, definitions, terms)
-  gitCommit(commitMessage.trim(), program.duet, program.dryRun)
+
+  gitCommit(commitMessage.trim(), program.duet, program.silent, program.dryRun)
 }
 
 //
