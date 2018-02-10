@@ -2,9 +2,14 @@
 
 ![anigif01](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif)
 
+## Samples
+
+- [sample01](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
+- [sample02](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
+
 ## Install
 
-You need install [fzf](https://github.com/junegunn/fzf) if you use interactive mode.
+**You need install [fzf](https://github.com/junegunn/fzf) if you use interactive mode.**
 
 ```
 $ npm install -g git-consistent
@@ -56,6 +61,28 @@ body:
   description: 'The body contains details of the change'
 ```
 
+### output usage
+
+```sh
+$ git-consistent --help
+
+  Usage: git-consistent [options]
+
+
+  Options:
+
+    --type <type>            commit type
+    -m, --subject <subject>  The subject contains succinct description of the change
+    --body [body]            The body contains details of the change (default: )
+    -d, --duet               run git-duet mode
+    -D, --dry-run            run dry-run mode
+    -i, --interactive        run interactive mode
+    -s, --skip-options       skip not required term input (interactive mode only)
+    -S, --silent             don't show commit command
+    -V, --version            output the version number
+    -h, --help               output usage information
+```
+
 ### inline mode
 
 ```sh
@@ -82,34 +109,8 @@ Enter body multiline:
 This is amazing feature.
 ```
 
-## `.git_consistent` format
-
-**TODO**
-
-## options
-
-| Option | Default | Description |
-| ------ | ------- | ----------- |
-| `-d, --duet` | false | run git-duet mode |
-| `-D, --dry-run` | false | run dry-run mode |
-| `-i, --interactive` | false | run interactive mode |
-| `-s, --skip-options` | false | skip not required term input (interactive mode only) |
-| `-S, --silent` | false | dont show commit command |
-| `-V, --version` | | output the version number |
-
-## Output usage information
-
-```sh
-$ git-consistent --help
-```
-
-## Samples
-
-- [sample01](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
-- [sample02](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
-
-## Advance
-### Decorate
+### Advance
+#### Decorate
 
 ```yml
 scope:
@@ -120,7 +121,7 @@ scope:
   suffix: ')'
 ```
 
-### format check
+#### format check
 
 ```yml
 subject:
@@ -151,7 +152,7 @@ subject should put dot (.) at the end.
 Enter subject: write document
 ```
 
-### variables
+#### variables
 
 `.gitcommit_template`
 ```text
@@ -199,7 +200,7 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
     This is test.
 ```
 
-### git-duet
+#### git-duet
 
 Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
 
@@ -214,6 +215,52 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 
     Signed-off-by: foo <foo@example.con>
 ```
+
+## .git_consistent format
+
+```
+<term>:
+  <option key>: <option value>
+  <option key>: <option value>
+  <option key>: <option value>
+<term>:
+  <option key>: <option value>
+  <option key>: <option value>
+  <option key>: <option value>
+<term>:
+  <option key>: <option value>
+  <option key>: <option value>
+  <option key>: <option value>
+```
+
+| key           | description                                               | value                                                                    |
+|---------------|-----------------------------------------------------------|--------------------------------------------------------------------------|
+| term          | `.gitcommit_template`'s term                              | string                                                                   |
+| option key    | term's options                                            | `type`, `required`, `description`, `values`, `prefix`, `suffix`, `rules` |
+| `type`        | term's input type                                         | `enum`, `string`, `text`                                                 |
+| `required`    | required?                                                 | boolean                                                                  |
+| `description` | term's description                                        | string                                                                   |
+| `values`      | enum's values                                             | Array                                                                    |
+| `prefix`      | a decoration to be attached before the input value        | string                                                                   |
+| `suffix`      | a decoration to be attached after the input value         | string                                                                   |
+| `rules`       | input value format rules                                  | Object                                                                   |
+| rule key      | rule's type                                               | `firstLatter`, `dotAtEnd`, `ascii`, `numberOnly`                         |
+| `firstLatter` | upper case or lower case about input value's first latter | `upper`, `lower`                                                         |
+| `dotAtEnd`    | need dot (`.`) input value's last                           | boolean                                                                  |
+| `ascii`       | allow ASCII?                                              | boolean                                                                  |
+| `numberOnly`  | number only?                                              | boolean                                                                  |
+
+
+## command options
+
+| Option               | Default | Description                                          |
+|----------------------|---------|------------------------------------------------------|
+| `-d, --duet`         | false   | run git-duet mode                                    |
+| `-D, --dry-run`      | false   | run dry-run mode                                     |
+| `-i, --interactive`  | false   | run interactive mode                                 |
+| `-s, --skip-options` | false   | skip not required term input (interactive mode only) |
+| `-S, --silent`       | false   | dont show commit command                             |
+| `-V, --version`      |         | output the version number                            |
 
 ---
 
