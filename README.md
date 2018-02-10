@@ -28,31 +28,32 @@ Please put follow two files to your project root dir.
 
 `.git_consistent`
 ```yml
-:type:
-  :type: :enum
-  :required: true
-  :description: 'commit type'
-  :values:
+type:
+  type: enum
+  required: true
+  description: 'commit type'
+  values:
     -
-      :name: feat
-      :description: 'when implementing function'
+      name: feat
+      description: 'when implementing function'
     -
-      :name: fix
-      :description: 'when fixing a bug'
+      name: fix
+      description: 'when fixing a bug'
     -
-      :name: refactor
-      :description: 'when refactoring'
+      name: refactor
+      description: 'when refactoring'
     -
-      :name: docs
-      :description: 'when writing docs'
-:subject:
-  :type: :string
-  :required: true
-  :description: 'The subject contains succinct description of the change'
-:body:
-  :type: :text
-  :required: false
-  :description: 'Body'
+      name: docs
+      description: 'when writing docs'
+subject:
+  type: string
+  required: true
+  description: 'The subject contains succinct description of the change'
+body:
+  type: text
+  default: ''
+  required: false
+  description: 'Body'
 ```
 
 ### inline mode
