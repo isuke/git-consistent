@@ -192,10 +192,11 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
 Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
 
 ```sh
-$ git consistent -d --type"feat" --subject="duet test" --body=""
+$ git consistent -d --type="feat" --subject="duet test" --body=""
 ```
 
-```
+```sh
+$ git log -n 1
 Author: isuke <isuke770@gmail.com>
 Date:   Sat Feb 10 15:13:40 2018 +0900
 
