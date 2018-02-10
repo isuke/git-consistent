@@ -105,6 +105,7 @@ $ git-consistent --help
 ## Samples
 
 - [sample01](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
+- [sample02](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
 
 ## Advance
 ### Decorate
