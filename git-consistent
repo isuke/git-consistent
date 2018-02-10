@@ -27,7 +27,7 @@ const warningColor = yellow
 const infoColor    = magenta
 const errorColor   = red
 
-const version = '0.4.1'
+const version = '0.4.2'
 
 const loadDefinitions = (path) => {
   return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
