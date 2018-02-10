@@ -61,5 +61,6 @@ subject:
   description: 'The subject contains succinct description of the change'
 body:
   type: text
+  default: ''
   required: false
   description: 'Body'
