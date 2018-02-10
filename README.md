@@ -53,7 +53,7 @@ body:
   type: text
   default: ''
   required: false
-  description: 'Body'
+  description: 'The body contains details of the change'
 ```
 
 ### inline mode
@@ -139,6 +139,53 @@ subject should put dot (.) at the end.
 Enter subject: write document
 ```
 
+### variables
+
+`.gitcommit_template`
+```text
+<githubIssueNum> <subject>
+
+<githubIssueUrl>
+<body>
+```
+
+`.git_consistent`
+```yml
+githubIssueNum:
+  type: string
+  required: false
+  description: 'github issue number'
+  prefix: 'fix #'
+subject:
+  type: string
+  required: true
+  description: 'The subject contains succinct description of the change'
+githubIssueUrl:
+  type: variable
+  origin: githubIssueNum
+  description: 'github issue url'
+  prefix: 'https://github.com/isuke/git-consistent/issues/'
+body:
+  type: text
+  default: ''
+  required: false
+  description: 'The body contains details of the change'
+```
+
+```sh
+$ git consistent -i --subject="test" --body="This is test."
+Enter githubIssueNum: 12
+
+$ git log -n 1
+commit a9d6457f3674c8620fbe72c769cee09ba5459f02
+Author: isuke <isuke770@gmail.com>
+Date:   Sat Feb 10 17:40:33 2018 +0900
+
+    fix #12 test
+
+    https://github.com/isuke/git-consistent/issues/12
+    This is test.
+```
 
 ### git-duet
 
@@ -160,6 +207,9 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 ---
 
 # TODO
+## feature
+### support emoji
+
 ## Develop
 ### test
 

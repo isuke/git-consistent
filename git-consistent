@@ -38,10 +38,11 @@ const setOptions = (program, definitions, terms) => {
   } else {
     const term = terms[0]
     const definition = definitions[term]
+    const type = definition.type
     const optionName = term == 'subject' ? `-m, --${term}` : `--${term}`
     const valueStr = definition.required ? `<${term}>` : `[${term}]`
     const defaultValue = definition.default
-    program.option(`${optionName} ${valueStr}`, definition.description, defaultValue)
+    if (type !== 'variable') program.option(`${optionName} ${valueStr}`, definition.description, defaultValue)
     return setOptions(program, definitions, _.tail(terms))
   }
 }
@@ -100,6 +101,8 @@ const input = (term, definition) => {
     case 'text':
       inputValue = inputText(term, definition)
       break
+    case 'variable':
+      break
     default:
       throw new Error(`${type} is not defined.`)
   }
@@ -153,7 +156,7 @@ const replaceTerms = (program, template, definitions, terms) => {
 }
 
 const replaceTerm = (program, template, definition, term) => {
-  let value = program[term]
+  let value = definition.type === 'variable' ? program[definition.origin] : program[term]
 
   if (program.interactive) {
     if (_.isUndefined(value)) {
@@ -175,6 +178,8 @@ const replaceTerm = (program, template, definition, term) => {
 
   const errorMessages = checkValue(term, value, definition)
   if (!_.isEmpty(errorMessages)) throw new Error(errorMessages)
+
+  program[term] = value
 
   let decoratedValue = value
   if (!_.isEmpty(value)) {
