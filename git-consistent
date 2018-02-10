@@ -24,7 +24,8 @@ const reset   = '\u001b[0m'
 
 const messageColor = cyan
 const warningColor = yellow
-const errorColor = red
+const infoColor    = magenta
+const errorColor   = red
 
 const version = '0.3.0'
 
@@ -195,10 +196,15 @@ const gitCommit = (commitMessage, duet = false, dryRun = false) => {
     console.log("-------------------------")
     console.log(commitMessage)
     console.log("-------------------------")
-  } else if (duet) {
-    execSync(`git duet-commit -m "${commitMessage}"`)
   } else {
-    execSync(`git commit -m "${commitMessage}"`)
+    let command
+    if (duet) {
+      command = `git duet-commit -m "${commitMessage}"`
+    } else {
+      command = `git commit -m "${commitMessage}"`
+    }
+    console.log(`${infoColor}${command}${reset}`)
+    execSync(command)
   }
 }
 
