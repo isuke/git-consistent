@@ -12,7 +12,7 @@ $ npm install -g git-consistent
 $ yarn global add git-consistent
 
 # options
-$ git config --global alias.con consistent
+$ git config --global alias.con "consistent -i"
 ```
 
 ## Usage
@@ -79,7 +79,8 @@ This is amazing feature.
 
 | Option | Default | Description |
 | ------ | ------- | ----------- |
-| `-d, --dry-run` | false | run dry-run mode |
+| `-d, --duet` | false | run git-duet mode |
+| `-D, --dry-run` | false | run dry-run mode |
 | `-i, --interactive` | false | run interactive mode |
 | `-s, --skip-options` | false | skip not required term input (interactive mode only) |
 | `-V, --version` | | output the version number |
@@ -106,6 +107,23 @@ scope:
   suffix: ')'
 ```
 
+### git-duet
+
+Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
+
+```sh
+$ git consistent -d --type"feat" --subject="duet test" --body=""
+```
+
+```
+Author: isuke <isuke770@gmail.com>
+Date:   Sat Feb 10 15:13:40 2018 +0900
+
+    feat: duet test
+
+    Signed-off-by: foo <foo@example.con>
+```
+
 ---
 
 # TODO
@@ -122,8 +140,6 @@ $ git consistent --type="foo" --subject="implement new feature"
 You should select follow values.
 'feat', 'fix', 'docs' and 'refactor'.
 ```
-
-### support [git-duet](https://github.com/git-duet/git-duet)
 
 ## develop
 ### test
