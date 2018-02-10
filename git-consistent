@@ -197,6 +197,11 @@ const replaceTerm = (program, template, definition, term) => {
   return _.replace(template, `<${term}>`, decoratedValue)
 }
 
+const checkAddedFile = () => {
+  const addedFiles = execSync(`git diff --name-only --cached 2> /dev/null`).toString().trim()
+  if (_.isEmpty(addedFiles)) throw new Error(`no changes added to commit.`)
+}
+
 const gitCommit = (commitMessage, duet = false, silent = false, dryRun = false) => {
   let command
   if (duet) {
@@ -217,6 +222,8 @@ const gitCommit = (commitMessage, duet = false, silent = false, dryRun = false) 
 }
 
 const main = (program, template, definitions, terms) => {
+  checkAddedFile()
+
   const commitMessage = replaceTerms(program, template, definitions, terms)
 
   gitCommit(commitMessage.trim(), program.duet, program.silent, program.dryRun)
