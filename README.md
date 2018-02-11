@@ -4,8 +4,9 @@
 
 ## Samples
 
-- [sample01](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
-- [sample02](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
+- [commitizen sample](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
+- [issue link sample](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
+- [emoji sample](https://gist.github.com/isuke/fade15cf04b9e172ee76c2784119b44e)
 
 ## Install
 
@@ -205,6 +206,27 @@ git commit -m "feat: this is some text we want to ceck for typos"
 Is 'ceck' misspelled? Did you mean that? 'check', 'ceca', 'neck', 'cock', 'deck', 'peck', 'heck', 'beck', 'Peck', 'Beck', 'Keck'
 ```
 
+#### emoji
+
+```
+emoji:
+  type: enum
+  required: true
+  description: 'commit type'
+  values:
+    -
+      name: ':heavy_plus_sign:'
+      description: 'when implementing function'
+    -
+      name: ':sunny:'
+      description: 'when fixing a bug'
+    -
+      name: ':art:'
+      description: 'when refactoring'
+```
+
+![emoji02](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent02_emoji.png)
+
 #### git-duet
 
 Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
@@ -271,9 +293,6 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 ---
 
 # TODO
-## feature
-### support emoji
-
 ## Develop
 ### test
 
