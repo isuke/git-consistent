@@ -88,7 +88,7 @@ const select = (term, definition) => {
   })
   if (!definition.required) choices.unshift({ name: '', emoji: '', description: none })
 
-  const command = `echo '${_.replace(formatChoices(choices), "'", '"')}' | fzf --reverse --cycle --header="${header}"`
+  const command = `echo "${formatChoices(choices).replace(/"/g, '\\"')}" | fzf --reverse --cycle --header="${header}"`
 
   const selectedValue = execSync(command, { stdio: ['inherit', 'pipe', 'inherit'], shell: true }).toString().trim()
   const value = selectedValue.split(" ")[0]
@@ -244,18 +244,20 @@ const checkAddedFile = () => {
 }
 
 const gitCommit = (commitMessage, duet = false, silent = false, dryRun = false) => {
+  const escapedCommitMessage = commitMessage.replace(/"/g, '\\"')
+
   let command
   if (duet) {
-    command = `git duet-commit -m "${commitMessage}"`
+    command = `git duet-commit -m "${escapedCommitMessage}"`
   } else {
-    command = `git commit -m "${commitMessage}"`
+    command = `git commit -m "${escapedCommitMessage}"`
   }
 
   if (!silent) console.log(`${infoColor}${command}${reset}`)
 
   if (dryRun) {
     console.log("-------------------------")
-    console.log(commitMessage)
+    console.log(escapedCommitMessage)
     console.log("-------------------------")
   } else {
     execSync(command)
