@@ -7,8 +7,9 @@ const yaml       = require('js-yaml')
 const execSync   = require('child_process').execSync
 const program    = require('commander')
 const prompt     = require('prompt-sync')()
-const spellcheck = require('nodehun-sentences');
-const nodehun    = require('nodehun');
+const spellcheck = require('nodehun-sentences')
+const nodehun    = require('nodehun')
+const emoji      = require('node-emoji')
 
 const templateFileName    = '.gitcommit_template'
 const definitionsFileName = '.git_consistent'
@@ -62,15 +63,35 @@ const createProgram = (program, definitions, terms) => {
     .parse(process.argv)
 }
 
+const formatChoices = (choices) => {
+  const nameMaxLength = _(choices).map('name').map((n) => { return n.length }).max()
+  const emojiMaxLength = _(choices).map('emoji').map((n) => { return n.length }).max()
+
+  aaa=  _.map(choices, (choice) => {
+    const n = _.padEnd(choice.name, nameMaxLength)
+    const e = emojiMaxLength === 0 ? '' : _.padEnd(choice.emoji, 3)
+    return [n, e, choice.description].join(" ")
+  })
+  return aaa.join("\n")
+}
+
 const select = (term, definition) => {
   const none = "(none)"
   const header = `Select ${term}: `
-  const choices = _.map(definition.values, function (value) { return `${value.name}\t${value.description}` })
-  if (!definition.required) choices.unshift(`\t${none}`)
-  const command = `echo '${_.replace(choices.join("\n"), "'", '"')}' | fzf --reverse --cycle --header="${header}"`
+  const choices = _.map(definition.values, function (value) {
+    const name = value.name
+    const description = value.description
+    let emojiStr = ''
+
+    if (/^:.+:$/.test(name) && emoji.hasEmoji(name)) emojiStr = emoji.get(name)
+    return { name: name, emoji: emojiStr, description: description }
+  })
+  if (!definition.required) choices.unshift({ name: '', emoji: '', description: none })
+
+  const command = `echo '${_.replace(formatChoices(choices), "'", '"')}' | fzf --reverse --cycle --header="${header}"`
 
   const selectedValue = execSync(command, { stdio: ['inherit', 'pipe', 'inherit'], shell: true }).toString().trim()
-  const value = selectedValue.split("\t")[0]
+  const value = selectedValue.split(" ")[0]
   const v = value === none ? '' : value
   console.log(`${header}${value}`)
   return v
