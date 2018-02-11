@@ -8,13 +8,31 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+array-unique@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.1.1.tgz#b2dc8ec765d306537d7291e0e621e849d2573cf9"
+
+async@^2.1.4:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
+  dependencies:
+    lodash "^4.14.0"
+
 commander@^2.14.1:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
 
+dictionary-en-us@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dictionary-en-us/-/dictionary-en-us-2.0.0.tgz#b9135f403444bb5e4b3cf465fb7d3f2fd276a839"
+
 esprima@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+
+in-publish@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.0.tgz#e20ff5e3a2afc2690320b6dc552682a9c7fadf51"
 
 js-yaml@^3.10.0:
   version "3.10.0"
@@ -23,9 +41,26 @@ js-yaml@^3.10.0:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-lodash@^4.17.5:
+lodash@^4.14.0, lodash@^4.17.5:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
+nodehun-sentences@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/nodehun-sentences/-/nodehun-sentences-1.0.4.tgz#a4aef2d7707d7d568133806e957a6a4ab9eb9106"
+  dependencies:
+    async "^2.1.4"
+    in-publish "^2.0.0"
+    partial "^0.0.3"
+    unique-words "^1.0.0"
+
+nodehun@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/nodehun/-/nodehun-2.0.11.tgz#cbba5595720f325fb247fb0e7e2018a56f7ed188"
+
+partial@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/partial/-/partial-0.0.3.tgz#2d107bed98fcea8d28d7665495b39e61dfcd18c6"
 
 prompt-sync@^4.1.5:
   version "4.1.5"
@@ -34,3 +69,9 @@ prompt-sync@^4.1.5:
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
+
+unique-words@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/unique-words/-/unique-words-1.0.0.tgz#40b26a19f98061663c813cd97a1a20a7f8b55990"
+  dependencies:
+    array-unique "^0.1.1"

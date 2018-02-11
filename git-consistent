@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
-const path      = require('path')
-const fs        = require('fs')
-const _         = require('lodash')
-const yaml      = require('js-yaml')
-const execSync  = require('child_process').execSync
-const program   = require('commander')
-const prompt    = require('prompt-sync')()
+const path       = require('path')
+const fs         = require('fs')
+const _          = require('lodash')
+const yaml       = require('js-yaml')
+const execSync   = require('child_process').execSync
+const program    = require('commander')
+const prompt     = require('prompt-sync')()
+const spellcheck = require('nodehun-sentences');
+const nodehun    = require('nodehun');
 
 const templateFileName    = '.gitcommit_template'
 const definitionsFileName = '.git_consistent'
@@ -55,6 +57,7 @@ const createProgram = (program, definitions, terms) => {
     .option(`-i, --interactive`, 'run interactive mode')
     .option(`-s, --skip-options`, 'skip not required term input (interactive mode only)')
     .option(`-S, --silent`, "don't show commit command")
+    .option(`-t, --typo-check`, "check spell")
     .version(version)
     .parse(process.argv)
 }
@@ -197,6 +200,23 @@ const replaceTerm = (program, template, definition, term) => {
   return _.replace(template, `<${term}>`, decoratedValue)
 }
 
+const checkSpell = (message) => {
+  const dictionaryBase = path.dirname(require.resolve('dictionary-en-us'))
+  const hunspell = new nodehun(
+    fs.readFileSync(path.join(dictionaryBase, 'index.aff')),
+    fs.readFileSync(path.join(dictionaryBase, 'index.dic'))
+  )
+
+  spellcheck(hunspell, message, (e, typos) => {
+    if (e) throw e
+
+    _.forEach(typos, (typo) => {
+      process.stdout.write(`${yellow}Is '${typo.word}' misspelled? ${reset}`)
+      console.log(`${yellow}Did you mean that? ${typo.suggestions.map((s) => {return `'${s}'`}).join(', ')}${reset}`)
+    })
+  })
+}
+
 const checkAddedFile = () => {
   const addedFiles = execSync(`git diff --name-only --cached 2> /dev/null`).toString().trim()
   if (_.isEmpty(addedFiles)) throw new Error(`no changes added to commit.`)
@@ -222,9 +242,11 @@ const gitCommit = (commitMessage, duet = false, silent = false, dryRun = false) 
 }
 
 const main = (program, template, definitions, terms) => {
-  checkAddedFile()
+  if (!program.dryRun) checkAddedFile()
 
   const commitMessage = replaceTerms(program, template, definitions, terms)
+
+  if (program.typoCheck) checkSpell(commitMessage)
 
   gitCommit(commitMessage.trim(), program.duet, program.silent, program.dryRun)
 }

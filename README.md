@@ -16,8 +16,7 @@ $ npm install -g git-consistent
 # or
 $ yarn global add git-consistent
 
-# options
-$ git config --global alias.con "consistent -i"
+$ git config --global alias.con "consistent -i -t" # recommended option
 ```
 
 ## Usage
@@ -74,11 +73,7 @@ $ git-consistent --help
     --type <type>            commit type
     -m, --subject <subject>  The subject contains succinct description of the change
     --body [body]            The body contains details of the change (default: )
-    -d, --duet               run git-duet mode
-    -D, --dry-run            run dry-run mode
-    -i, --interactive        run interactive mode
-    -s, --skip-options       skip not required term input (interactive mode only)
-    -S, --silent             don't show commit command
+    ...
     -V, --version            output the version number
     -h, --help               output usage information
 ```
@@ -200,6 +195,16 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
     This is test.
 ```
 
+#### spell check
+
+With `-t` option.
+
+```sh
+$ git consistent -t --type="feat" --scope="" --subject="this is some text we want to ceck for typos"
+git commit -m "feat: this is some text we want to ceck for typos"
+Is 'ceck' misspelled? Did you mean that? 'check', 'ceca', 'neck', 'cock', 'deck', 'peck', 'heck', 'beck', 'Peck', 'Beck', 'Keck'
+```
+
 #### git-duet
 
 Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
@@ -253,22 +258,21 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 
 ## command options
 
-| Option               | Default | Description                                          |
-|----------------------|---------|------------------------------------------------------|
-| `-d, --duet`         | false   | run git-duet mode                                    |
-| `-D, --dry-run`      | false   | run dry-run mode                                     |
-| `-i, --interactive`  | false   | run interactive mode                                 |
-| `-s, --skip-options` | false   | skip not required term input (interactive mode only) |
-| `-S, --silent`       | false   | dont show commit command                             |
-| `-V, --version`      |         | output the version number                            |
+| Option               | Description                                          |
+|----------------------|------------------------------------------------------|
+| `-d, --duet`         | run git-duet mode                                    |
+| `-D, --dry-run`      | run dry-run mode                                     |
+| `-i, --interactive`  | run interactive mode                                 |
+| `-s, --skip-options` | skip not required term input (interactive mode only) |
+| `-S, --silent`       | dont show commit command                             |
+| `-t, --typo-check`,  | check spell                                          |
+| `-V, --version`      | output the version number                            |
 
 ---
 
 # TODO
 ## feature
 ### support emoji
-
-### typo check
 
 ## Develop
 ### test
