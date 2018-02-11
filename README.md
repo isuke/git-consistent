@@ -242,7 +242,7 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 |---------------|-----------------------------------------------------------|--------------------------------------------------------------------------|
 | term          | `.gitcommit_template`'s term                              | string                                                                   |
 | option key    | term's options                                            | `type`, `required`, `description`, `values`, `prefix`, `suffix`, `rules` |
-| `type`        | term's input type                                         | `enum`, `string`, `text`                                                 |
+| `type`        | term's input type                                         | `enum`, `string`, `text`, `variable`                                     |
 | `required`    | required?                                                 | boolean                                                                  |
 | `description` | term's description                                        | string                                                                   |
 | `values`      | enum's values                                             | Array                                                                    |
@@ -251,7 +251,7 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 | `rules`       | input value format rules                                  | Object                                                                   |
 | rule key      | rule's type                                               | `firstLatter`, `dotAtEnd`, `ascii`, `numberOnly`                         |
 | `firstLatter` | upper case or lower case about input value's first latter | `upper`, `lower`                                                         |
-| `dotAtEnd`    | need dot (`.`) input value's last                           | boolean                                                                  |
+| `dotAtEnd`    | need dot (`.`) input value's last                         | boolean                                                                  |
 | `ascii`       | allow ASCII?                                              | boolean                                                                  |
 | `numberOnly`  | number only?                                              | boolean                                                                  |
 
