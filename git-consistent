@@ -141,6 +141,14 @@ const checkValue = (term, value, definition) => {
 
   if (definition.required && _.isEmpty(value)) errorMessages.push(`${term} is required.`)
 
+  if (definition.type === 'enum') {
+    const enumNames = _.map(definition.values, 'name')
+    if (!enumNames.includes(value) && !_.isEmpty(value)) {
+      const enumNamesStr = _.map(enumNames, (enumName) => { return `'${enumName}'` }).join(', ')
+      errorMessages.push(`${term}'s value '${value}' is undefined. defined values ${enumNamesStr}.`)
+    }
+  }
+
   _.forEach(rules, (ruleSetting, ruleName) => {
     switch (ruleName) {
       case 'firstLatter':
