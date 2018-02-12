@@ -67,12 +67,11 @@ const formatChoices = (choices) => {
   const nameMaxLength = _(choices).map('name').map((n) => { return n.length }).max()
   const emojiMaxLength = _(choices).map('emoji').map((n) => { return n.length }).max()
 
-  aaa=  _.map(choices, (choice) => {
+  return _.map(choices, (choice) => {
     const n = _.padEnd(choice.name, nameMaxLength)
     const e = emojiMaxLength === 0 ? '' : _.padEnd(choice.emoji, 3)
     return [n, e, choice.description].join(" ")
-  })
-  return aaa.join("\n")
+  }).join("\n")
 }
 
 const select = (term, definition) => {
