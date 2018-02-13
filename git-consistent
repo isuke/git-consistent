@@ -13,7 +13,6 @@ const emoji      = require('node-emoji')
 
 const templateFileName    = '.gitcommit_template'
 const definitionsFileName = '.git_consistent'
-const projectRoot = execSync(`git rev-parse --show-toplevel 2> /dev/null`).toString().trim()
 
 const black   = '\u001b[30m'
 const red     = '\u001b[31m'
@@ -31,6 +30,14 @@ const infoColor    = magenta
 const errorColor   = red
 
 const version = '0.5.1'
+
+const getProjectRoot = () => {
+  try {
+    return execSync(`git rev-parse --show-toplevel 2> /dev/null`).toString().trim()
+  } catch (_e) {
+    throw new Error(`Not a git repository`)
+  }
+}
 
 const loadDefinitions = (path) => {
   return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
@@ -285,6 +292,7 @@ const main = (program, template, definitions, terms) => {
 // Main
 //
 try {
+  const projectRoot = getProjectRoot()
   const rootPath = projectRoot === "" ? process.env.HOME : projectRoot
   const templateFilePath = path.join(rootPath, templateFileName)
   const definitionsFilePath = path.join(rootPath, definitionsFileName)
