@@ -1,38 +1,51 @@
-# git consistent
+:chapter-label:
+:icons: font
+:lang: en
+:sectanchors:
+:sectlinks:
+:sectnums:
+:sectnumlevels: 3
+:source-highlighter: highlightjs
 
-![anigif01](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif)
+:author: isuke
+:email: isuke770@gmail.com
 
-## Samples
+= git-consistent
 
-- [commitizen sample](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
-- [issue link sample](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
-- [emoji sample](https://gist.github.com/isuke/fade15cf04b9e172ee76c2784119b44e)
+image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif[]
 
-## Install
+== Samples
 
-**You need install [fzf](https://github.com/junegunn/fzf) if you use interactive mode.**
+* link:https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66[commitizen sample]
+* link:https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b[issue link sample]
+* link:https://gist.github.com/isuke/fade15cf04b9e172ee76c2784119b44e[emoji sample]
 
-```
+== Install
+
+**You need install https://github.com/junegunn/fzf[fzf] if you use interactive mode.**
+
+----
 $ npm install -g git-consistent
 # or
 $ yarn global add git-consistent
 
 $ git config --global alias.con "consistent -i -t" # recommended option
-```
+----
 
-## Usage
+== Usage
 
 Please put follow two files to your project root dir.
 
-`.gitcommit_template`
-```text
+.`.gitcommit_template`
+----
 <type>: <subject>
 
 <body>
-```
+----
 
-`.git_consistent`
-```yml
+[source,yaml]
+.`.git_consistent`
+----
 type:
   type: enum
   required: true
@@ -59,11 +72,12 @@ body:
   default: ''
   required: false
   description: 'The body contains details of the change'
-```
+----
 
-### output usage
+=== output usage
 
-```sh
+[source,shell]
+----
 $ git-consistent --help
 
   Usage: git-consistent [options]
@@ -77,49 +91,54 @@ $ git-consistent --help
     ...
     -V, --version            output the version number
     -h, --help               output usage information
-```
+----
 
-### inline mode
+=== inline mode
 
-```sh
+[source,shell]
+----
 $ git consistent --type="feat" --subject="implement new feature" --body="This is amazing feature."
-```
+----
 
-### interactive mode
+=== interactive mode
 
-```sh
+[source,shell]
+----
 $ git consistent -i
 Select type: feat
 Enter subject: implement new feature
 Enter body multiline:
 This is amazing feature.
-```
+----
 
 You can use both mode interactive and inline at the same time.
 In that case, you input value that are not given as option only.
 
-```sh
+[source,shell]
+----
 $ git consistent -i --subject="implement new feature"
 Select type: feat
 Enter body multiline:
 This is amazing feature.
-```
+----
 
-### Advance
-#### Decorate
+=== Advance
+==== Decorate
 
-```yml
+[source,yaml]
+----
 scope:
   type: text
   required: false
   description: 'The scope could be specifying place of the commit change.'
   prefix: '('
   suffix: ')'
-```
+----
 
-#### format check
+==== format check
 
-```yml
+[source,yaml]
+----
 subject:
   type: string
   required: true
@@ -128,9 +147,10 @@ subject:
     firstLatter: lower
     dotAtEnd: false
     ascii: false
-```
+----
 
-```sh
+[source,shell]
+----
 $ git consistent --subject="Write documents."
 subject must be first latter is lowercase.
 subject should put dot (.) at the end.
@@ -146,20 +166,19 @@ Enter subject: Write documents.
 subject must be first latter is lowercase.
 subject should put dot (.) at the end.
 Enter subject: write document
-```
+----
 
-#### variables
+==== variables
 
-`.gitcommit_template`
-```text
+----
 <githubIssueNum> <subject>
 
 <githubIssueUrl>
 <body>
-```
+----
 
-`.git_consistent`
-```yml
+[source,yaml]
+----
 githubIssueNum:
   type: string
   required: false
@@ -179,9 +198,10 @@ body:
   default: ''
   required: false
   description: 'The body contains details of the change'
-```
+----
 
-```sh
+[source,shell]
+----
 $ git consistent -i --subject="test" --body="This is test."
 Enter githubIssueNum: 12
 
@@ -194,21 +214,23 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
 
     https://github.com/isuke/git-consistent/issues/12
     This is test.
-```
+----
 
-#### spell check
+==== spell check
 
 With `-t` option.
 
-```sh
+[source,shell]
+----
 $ git consistent -t --type="feat" --scope="" --subject="this is some text we want to ceck for typos"
 git commit -m "feat: this is some text we want to ceck for typos"
 Is 'ceck' misspelled? Did you mean that? 'check', 'ceca', 'neck', 'cock', 'deck', 'peck', 'heck', 'beck', 'Peck', 'Beck', 'Keck'
-```
+----
 
-#### emoji
+==== emoji
 
-```
+[source,yml]
+----
 emoji:
   type: enum
   required: true
@@ -223,15 +245,16 @@ emoji:
     -
       name: ':art:'
       description: 'when refactoring'
-```
+----
 
-![emoji02](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent02_emoji.png)
+image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent02_emoji.png[]
 
-#### git-duet
+==== git-duet
 
-Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
+Run https://github.com/git-duet/git-duet[git-duet] mode when with `-d` option.
 
-```sh
+[source,shell]
+----
 $ git consistent -d --type="feat" --subject="duet test" --body=""
 
 $ git log -n 1
@@ -241,11 +264,11 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
     feat: duet test
 
     Signed-off-by: foo <foo@example.con>
-```
+----
 
-## .git_consistent format
+== .git_consistent format
 
-```
+----
 <term>:
   <option key>: <option value>
   <option key>: <option value>
@@ -258,47 +281,111 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
   <option key>: <option value>
   <option key>: <option value>
   <option key>: <option value>
-```
+----
 
-| key           | description                                               | value                                                                    |
-|---------------|-----------------------------------------------------------|--------------------------------------------------------------------------|
-| term          | `.gitcommit_template`'s term                              | string                                                                   |
-| option key    | term's options                                            | `type`, `required`, `description`, `values`, `prefix`, `suffix`, `rules` |
-| `type`        | term's input type                                         | `enum`, `string`, `text`, `variable`                                     |
-| `required`    | required?                                                 | boolean                                                                  |
-| `description` | term's description                                        | string                                                                   |
-| `values`      | enum's values                                             | Array                                                                    |
-| `prefix`      | a decoration to be attached before the input value        | string                                                                   |
-| `suffix`      | a decoration to be attached after the input value         | string                                                                   |
-| `rules`       | input value format rules                                  | Object                                                                   |
-| rule key      | rule's type                                               | `firstLatter`, `dotAtEnd`, `ascii`, `numberOnly`                         |
-| `firstLatter` | upper case or lower case about input value's first latter | `upper`, `lower`                                                         |
-| `dotAtEnd`    | need dot (`.`) input value's last                         | boolean                                                                  |
-| `ascii`       | allow ASCII?                                              | boolean                                                                  |
-| `numberOnly`  | number only?                                              | boolean                                                                  |
+[cols="1,1,2", options="header"]
+|===
+| key
+| description
+| value
+
+| term
+| .gitcommit_template's term
+| string
+
+| option key
+| term's options
+| `type`, `required`, `description`, `values`, `prefix`, `suffix`, `rules`
+
+| `type`
+| term's input type
+| `enum`, `string`, `text`, `variable`
+
+| `required`
+| required?
+| boolean
+
+| `description`
+| term's description
+| string
+
+| `values`
+| enum's values
+| Array
+
+| `prefix`
+| a decoration to be attached before the input value
+| string
+
+| `suffix`
+| a decoration to be attached after the input value
+| string
+
+| `rules`
+| input value format rules
+| Object
+
+| rule key
+| rule's type
+| `firstLatter`, `dotAtEnd`, `ascii`, `numberOnly`
+
+| `firstLatter`
+| upper case or lower case about input value's first latter
+| `upper`, `lower`
+
+| `dotAtEnd`
+| need dot (`.`) input value's last
+| boolean
+
+| `ascii`
+| allow ASCII?
+| boolean
+
+| `numberOnly`
+| number only?
+| boolean
+|===
 
 
-## command options
+== command options
 
-| Option               | Description                                          |
-|----------------------|------------------------------------------------------|
-| `-d, --duet`         | run git-duet mode                                    |
-| `-D, --dry-run`      | run dry-run mode                                     |
-| `-i, --interactive`  | run interactive mode                                 |
-| `-s, --skip-options` | skip not required term input (interactive mode only) |
-| `-S, --silent`       | dont show commit command                             |
-| `-t, --typo-check`,  | check spell                                          |
-| `-V, --version`      | output the version number                            |
+[cols="1,1", options="header"]
+|===
+| Option
+| Description
+
+| `-d, --duet`
+| run git-duet mode
+
+| `-D, --dry-run`
+| run dry-run mode
+
+| `-i, --interactive`
+| run interactive mode
+
+| `-s, --skip-options`
+| skip not required term input (interactive mode only)
+
+| `-S, --silent`
+| dont show commit command
+
+| `-t, --typo-check`,
+| check spell
+
+| `-V, --version`
+| output the version number
+|===
 
 ---
 
-# TODO
-## feature
-### prompt history
+== TODO
+=== feature
+==== prompt history
 
-## Develop
-### test
+=== Develop
+==== test
 
-```sh
+[source,shell]
+----
 $ yarn run test
-```
+----
