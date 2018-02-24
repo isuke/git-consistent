@@ -2,7 +2,6 @@
 :icons: font
 :lang: en
 :sectanchors:
-:sectlinks:
 :sectnums:
 :sectnumlevels: 3
 :source-highlighter: highlightjs
@@ -265,6 +264,10 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 
     Signed-off-by: foo <foo@example.con>
 ----
+
+== sample type list
+
+link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[sample type list]
 
 == .git_consistent format
 

@@ -1,0 +1,123 @@
+:imagesdir: https://www.webpagefx.com/tools/emoji-cheat-sheet/graphics/emojis/
+
+[cols="1,1,1,1,1,2", options="header"]
+|===
+| Name
+| Meaning
+| emoji_sign
+| emoji
+| Is commitizen?
+| Description
+
+| feat
+| Features
+| `:heavy_plus_sign:`
+a| image::heavy_plus_sign.png[heavy_plus_sign]
+| yes
+| when implementing function
+
+| fix
+| Bug Fixes
+| `:sunny:`
+a| image::sunny.png[sunny]
+| yes
+| when fixing a bug
+
+| docs
+| Documentation
+| `:pencil2:`
+a| image::pencil2.png[pencil2]
+| yes
+| when writing docs
+
+| style
+| Styles
+| `:shirt:`
+a| image::shirt.png[shirt]
+| yes
+| when change coding style
+
+| refactor
+| Code Refactoring
+| `:art:`
+a| image::art.png[art]
+| yes
+| when refactoring
+
+| perf
+| Performances
+| `:rocket:`
+a| image::rocket.png[rocket]
+| yes
+| when improving performance
+
+| test
+| Tests
+| `:white_check_mark:`
+a| image::white_check_mark.png[white_check_mark]
+| yes
+| when adding tests
+
+| build
+| Builds
+| `:arrow_heading_up:`
+a| image::arrow_heading_up.png[arrow_heading_up]
+| yes
+| when changes build system
+
+| ci
+| Continuous Integrations
+| `:green_heart:`
+a| image::green_heart.png[green_heart]
+| yes
+| when change the CI build
+
+| chore
+| Chores
+| `:wrench:`
+a| image::wrench.png[wrench]
+| yes
+| when change other that don't modify code or test files
+
+| revert
+| Reverts
+| `:arrow_heading_down:`
+a| image::arrow_heading_down.png[arrow_heading_down]
+| yes
+| when reverts a previous commit
+
+| remove
+| Removes
+| `:heavy_minus_sign:`
+a| image::heavy_minus_sign.png[heavy_minus_sign]
+| no
+| when removing function
+
+| sec
+| Securities
+| `:lock:`
+a| image::lock.png[lock]
+| no
+| when dealing with security
+
+| up
+| Update dependencies
+| `:arrow_up:`
+a| image::arrow_up.png[arrow_up]
+| no
+| when upgrading dependencies
+
+| down
+| Downgrade dependencies
+| `:arrow_down:`
+a| image::arrow_down.png[arrow_down]
+| no
+| when downgrading dependencies
+
+| tada
+| Celebrats
+| `:tada:`
+a| image::tada.png[tada]
+| no
+| when celebrating
+|===
