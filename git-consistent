@@ -1,36 +1,24 @@
 #!/usr/bin/env node
 
+const program    = require('commander')
 const path       = require('path')
 const fs         = require('fs')
 const _          = require('lodash')
-const yaml       = require('js-yaml')
 const execSync   = require('child_process').execSync
-const program    = require('commander')
-const prompt     = require('prompt-sync')()
-const spellcheck = require('nodehun-sentences')
-const nodehun    = require('nodehun')
-const emoji      = require('node-emoji')
+const yaml       = require('js-yaml')
+
+const colors    = require('./lib/colors')
+const main      = require('./lib/main')
+const genConfig = require('./lib/gen-config')
 
 const templateFileName    = '.gitcommit_template'
 const definitionsFileName = '.git_consistent'
 
-const black   = '\u001b[30m'
-const red     = '\u001b[31m'
-const green   = '\u001b[32m'
-const yellow  = '\u001b[33m'
-const blue    = '\u001b[34m'
-const magenta = '\u001b[35m'
-const cyan    = '\u001b[36m'
-const white   = '\u001b[37m'
-const reset   = '\u001b[0m'
-
-const messageColor = cyan
-const warningColor = yellow
-const infoColor    = magenta
-const errorColor   = red
-
 const version = '0.5.2'
 
+//
+// Functions
+//
 const getProjectRoot = () => {
   try {
     return execSync(`git rev-parse --show-toplevel 2> /dev/null`).toString().trim()
@@ -58,249 +46,37 @@ const setOptions = (program, definitions, terms) => {
   }
 }
 
-const createProgram = (program, definitions, terms) => {
-  return setOptions(program, definitions, terms)
+//
+// Main
+//
+try {
+  program
     .option(`-d, --duet`, 'run git-duet mode')
     .option(`-D, --dry-run`, 'run dry-run mode')
     .option(`-i, --interactive`, 'run interactive mode')
     .option(`-s, --skip-options`, 'skip not required term input (interactive mode only)')
     .option(`-S, --silent`, "don't show commit command")
     .option(`-t, --typo-check`, "check spell")
+    .option(`--gen-config`, "generate config files")
     .version(version)
-    .parse(process.argv)
-}
 
-const formatChoices = (choices) => {
-  const nameMaxLength = _(choices).map('name').map((n) => { return n.length }).max()
-  const emojiMaxLength = _(choices).map('emoji').map((n) => { return n.length }).max()
-
-  return _.map(choices, (choice) => {
-    const n = _.padEnd(choice.name, nameMaxLength)
-    const e = emojiMaxLength === 0 ? '' : _.padEnd(choice.emoji, 3)
-    return [n, e, choice.description].join(" ")
-  }).join("\n")
-}
-
-const select = (term, definition) => {
-  const none = "(none)"
-  const header = `Select ${term}: `
-  const choices = _.map(definition.values, function (value) {
-    const name = value.name
-    const description = value.description
-    let emojiStr = ''
-
-    if (/^:.+:$/.test(name) && emoji.hasEmoji(name)) emojiStr = emoji.get(name)
-    return { name: name, emoji: emojiStr, description: description }
-  })
-  if (!definition.required) choices.unshift({ name: '', emoji: '', description: none })
-
-  const command = `echo "${formatChoices(choices).replace(/"/g, '\\"')}" | fzf --reverse --cycle --header="${header}"`
-
-  const selectedValue = execSync(command, { stdio: ['inherit', 'pipe', 'inherit'], shell: true }).toString().trim()
-  const value = selectedValue.split(" ")[0]
-  const v = value === none ? '' : value
-  console.log(`${header}${value}`)
-  return v
-}
-
-const inputString = (term, _definition) => {
-  return prompt(`${messageColor}Enter ${term}: ${reset}`)
-}
-
-const inputText = (term, _definition) => {
-  console.log(`${messageColor}Enter ${term} multiline:${reset}`)
-  let values = []
-  let value = ""
-
-  do {
-    value = prompt()
-    values.push(value)
-  } while (!_.isEmpty(value))
-
-  return values.join("\n").trim()
-}
-
-const input = (term, definition) => {
-  const type = definition.type
-  let inputValue
-  switch (type) {
-    case 'enum':
-      inputValue = select(term, definition)
-      break
-    case 'string':
-      inputValue = inputString(term, definition)
-      break
-    case 'text':
-      inputValue = inputText(term, definition)
-      break
-    case 'variable':
-      break
-    default:
-      throw new Error(`${type} is not defined.`)
-  }
-  return inputValue
-}
-
-const checkValue = (term, value, definition) => {
-  const rules = definition.rules
-  const errorMessages = []
-
-  if (definition.required && _.isEmpty(value)) errorMessages.push(`${term} is required.`)
-
-  if (definition.type === 'enum') {
-    const enumNames = _.map(definition.values, 'name')
-    if (!enumNames.includes(value) && !_.isEmpty(value)) {
-      const enumNamesStr = _.map(enumNames, (enumName) => { return `'${enumName}'` }).join(', ')
-      errorMessages.push(`${term}'s value '${value}' is undefined. defined values ${enumNamesStr}.`)
-    }
-  }
-
-  _.forEach(rules, (ruleSetting, ruleName) => {
-    switch (ruleName) {
-      case 'firstLatter':
-        if (['small', 'lower', 'lowercase'].includes(ruleSetting) && /^[^a-z].*/.test(value)) {
-          errorMessages.push(`${term} must be first latter is lowercase.`)
-        } else if (['big', 'upper', 'uppercase'].includes(ruleSetting) && /^[^A-Z].*/.test(value)) {
-          errorMessages.push(`${term} must be first latter is uppercase.`)
-        }
-        break
-      case 'dotAtEnd':
-        if (ruleSetting) {
-          if (/[^\.]$/.test(value)) errorMessages.push(`${term} should not put dot (.) at the end.`)
-        } else {
-          if (/\.$/.test(value)) errorMessages.push(`${term} should put dot (.) at the end.`)
-        }
-        break
-      case 'numberOnly':
-        if (ruleSetting && /^[^0-9].*/.test(value)) {
-          errorMessages.push(`${term} must be number only.`)
-        }
-        break
-      case 'ascii':
-        if (!ruleSetting && /[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]/.test(value)) {
-          errorMessages.push(`${term} should only alphabet.`)
-        }
-        break
-      default:
-        throw new Error(`${ruleName} is not defined.`)
-    }
-  })
-
-  return errorMessages.join("\n")
-}
-
-const replaceTerms = (program, template, definitions, terms) => {
-  if (_.isEmpty(terms)) {
-    return template
+  if (process.argv.includes('--gen-config')) {
+    program
+      .parse(process.argv)
   } else {
-    const term = terms[0]
-    const definition = definitions[term]
-    template = replaceTerm(program, template, definition, term)
-    return replaceTerms(program, template, definitions, _.tail(terms))
+    const projectRoot = getProjectRoot()
+    const rootPath = projectRoot === "" ? process.env.HOME : projectRoot
+    const templateFilePath = path.join(rootPath, templateFileName)
+    const definitionsFilePath = path.join(rootPath, definitionsFileName)
+    const template = fs.readFileSync(templateFilePath, 'utf8')
+    const definitions = loadDefinitions(definitionsFilePath)
+    const terms = _.keys(definitions)
+
+    setOptions(program, definitions, _.tail(terms))
+      .parse(process.argv)
+
+    main(program, template, definitions, terms)
   }
-}
-
-const replaceTerm = (program, template, definition, term) => {
-  let value = definition.type === 'variable' ? program[definition.origin] : program[term]
-
-  if (program.interactive) {
-    if (_.isUndefined(value) || _.isNull(value)) {
-      if (definition.required || !program.skipOptions) {
-        value = input(term, definition)
-      } else {
-        value = ''
-      }
-      let errorMessages = checkValue(term, value, definition)
-      while (!_.isEmpty(errorMessages)) {
-        console.log(`${warningColor}${errorMessages}${reset}`)
-        value = input(term, definition)
-        errorMessages = checkValue(term, value, definition)
-      }
-    }
-  } else {
-    if (_.isEmpty(value) && definition.required) throw new Error(`${term} is required.`)
-  }
-
-  const errorMessages = checkValue(term, value, definition)
-  if (!_.isEmpty(errorMessages)) throw new Error(errorMessages)
-
-  program[term] = value
-
-  let decoratedValue = value
-  if (!_.isEmpty(value)) {
-    if (definition.prefix) decoratedValue = definition.prefix + decoratedValue
-    if (definition.suffix) decoratedValue = decoratedValue + definition.suffix
-  }
-
-  return _.replace(template, `<${term}>`, decoratedValue)
-}
-
-const checkSpell = (message) => {
-  const dictionaryBase = path.dirname(require.resolve('dictionary-en-us'))
-  const hunspell = new nodehun(
-    fs.readFileSync(path.join(dictionaryBase, 'index.aff')),
-    fs.readFileSync(path.join(dictionaryBase, 'index.dic'))
-  )
-
-  spellcheck(hunspell, message, (e, typos) => {
-    if (e) throw e
-
-    _.forEach(typos, (typo) => {
-      process.stdout.write(`${yellow}Is '${typo.word}' misspelled? ${reset}`)
-      console.log(`${yellow}Did you mean that? ${typo.suggestions.map((s) => {return `'${s}'`}).join(', ')}${reset}`)
-    })
-  })
-}
-
-const checkAddedFile = () => {
-  const addedFiles = execSync(`git diff --name-only --cached 2> /dev/null`).toString().trim()
-  if (_.isEmpty(addedFiles)) throw new Error(`no changes added to commit.`)
-}
-
-const gitCommit = (commitMessage, duet = false, silent = false, dryRun = false) => {
-  const escapedCommitMessage = commitMessage.replace(/"/g, '\\"')
-
-  let command
-  if (duet) {
-    command = `git duet-commit -m "${escapedCommitMessage}"`
-  } else {
-    command = `git commit -m "${escapedCommitMessage}"`
-  }
-
-  if (!silent) console.log(`${infoColor}${command}${reset}`)
-
-  if (dryRun) {
-    console.log("-------------------------")
-    console.log(escapedCommitMessage)
-    console.log("-------------------------")
-  } else {
-    execSync(command)
-  }
-}
-
-const main = (program, template, definitions, terms) => {
-  if (!program.dryRun) checkAddedFile()
-
-  const commitMessage = replaceTerms(program, template, definitions, terms)
-
-  if (program.typoCheck) checkSpell(commitMessage)
-
-  gitCommit(commitMessage.trim(), program.duet, program.silent, program.dryRun)
-}
-
-//
-// Main
-//
-try {
-  const projectRoot = getProjectRoot()
-  const rootPath = projectRoot === "" ? process.env.HOME : projectRoot
-  const templateFilePath = path.join(rootPath, templateFileName)
-  const definitionsFilePath = path.join(rootPath, definitionsFileName)
-  const template = fs.readFileSync(templateFilePath, 'utf8')
-  const definitions = loadDefinitions(definitionsFilePath)
-  const terms = _.keys(definitions)
-
-  main(createProgram(program, definitions, terms), template, definitions, terms)
 } catch (e) {
-  console.error(`${errorColor}${e.message}${reset}`)
+  console.error(`${colors.error}${e.message}${colors.reset}`)
 }
