@@ -54,7 +54,10 @@ scope:
   values:
     -
       name: "main"
-      description: 'git-consistent'
+      description: 'main.js'
+    -
+      name: "gen-config"
+      description: 'gen-config.js'
 subject:
   type: string
   required: true
@@ -67,7 +70,7 @@ body:
   type: text
   default: ''
   required: false
-  description: 'Body'
+  description: 'The body contains details of the change'
   rules:
     firstLatter: upper
     dotAtEnd: true

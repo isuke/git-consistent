@@ -63,6 +63,7 @@ try {
   if (process.argv.includes('--gen-config')) {
     program
       .parse(process.argv)
+    genConfig(program, templateFileName, definitionsFileName)
   } else {
     const projectRoot = getProjectRoot()
     const rootPath = projectRoot === "" ? process.env.HOME : projectRoot
@@ -78,5 +79,6 @@ try {
     main(program, template, definitions, terms)
   }
 } catch (e) {
+  throw e
   console.error(`${colors.error}${e.message}${colors.reset}`)
 }
