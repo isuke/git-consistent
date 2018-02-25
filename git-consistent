@@ -73,7 +73,7 @@ try {
     const definitions = loadDefinitions(definitionsFilePath)
     const terms = _.keys(definitions)
 
-    setOptions(program, definitions, _.tail(terms))
+    setOptions(program, definitions, terms)
       .parse(process.argv)
 
     main(program, template, definitions, terms)
