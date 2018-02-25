@@ -33,44 +33,16 @@ $ git config --global alias.con "consistent -i -t" # recommended option
 
 == Usage
 
-Please put follow two files to your project root dir.
-
-.`.gitcommit_template`
+[source,shell]
 ----
-<type>: <subject>
-
-<body>
-----
-
-[source,yaml]
-.`.git_consistent`
-----
-type:
-  type: enum
-  required: true
-  description: 'commit type'
-  values:
-    -
-      name: feat
-      description: 'when implementing function'
-    -
-      name: fix
-      description: 'when fixing a bug'
-    -
-      name: refactor
-      description: 'when refactoring'
-    -
-      name: docs
-      description: 'when writing docs'
-subject:
-  type: string
-  required: true
-  description: 'The subject contains succinct description of the change'
-body:
-  type: text
-  default: ''
-  required: false
-  description: 'The body contains details of the change'
+$ git consistent --gen-config
+Use Type? (Y/n): Y
+Use Emoji? (y/N): N
+Does the subject start with lower case? (Y/n): Y
+Does the subject put dot (.) at end? (y/N): Y
+Generated '.gitcommit_template' and '.git_consistent'.
+You can edit them freely.
+Enjoy!
 ----
 
 === output usage
