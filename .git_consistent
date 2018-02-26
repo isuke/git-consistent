@@ -66,6 +66,13 @@ subject:
     firstLatter: lower
     dotAtEnd: false
     ascii: false
+issueLink:
+  type: branch
+  required: false
+  description: 'Github issue link'
+  regExp: 'issue([0-9]+)'
+  prefix: 'https://github.com/isuke/git-consistent/issues/'
+  suffix: "\n"
 body:
   type: text
   default: ''
