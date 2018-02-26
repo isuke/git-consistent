@@ -41,7 +41,7 @@ const setOptions = (program, definitions, terms) => {
     const optionName = term == 'subject' ? `-m, --${term}` : `--${term}`
     const valueStr = definition.required ? `<${term}>` : `[${term}]`
     const defaultValue = definition.default
-    if (type !== 'variable') program.option(`${optionName} ${valueStr}`, definition.description, defaultValue)
+    if (! ['variable', 'branch'].includes(type)) program.option(`${optionName} ${valueStr}`, definition.description, defaultValue)
     return setOptions(program, definitions, _.tail(terms))
   }
 }
