@@ -71,6 +71,7 @@ issueLink:
   required: false
   description: 'Github issue link'
   regExp: 'issue([0-9]+)'
+  regExpFlag: 'i'
   prefix: 'https://github.com/isuke/git-consistent/issues/'
   suffix: "\n"
 body:
