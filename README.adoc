@@ -346,6 +346,10 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 | (`type: branch` only) number of values to retrieve from the match specified by `regExp`
 | string
 
+| `regExpFlag`
+| (`type: branch` only) `regExp`'s falg
+| `i`
+
 | `rules`
 | input value format rules
 | Object
