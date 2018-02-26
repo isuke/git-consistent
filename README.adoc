@@ -17,6 +17,7 @@ image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consiste
 
 * link:https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66[commitizen sample]
 * link:https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b[issue link sample]
+* link:https://gist.github.com/isuke/03d83037f13a671d0f0a0af5d76496f8[issue link by branch name sample]
 * link:https://gist.github.com/isuke/fade15cf04b9e172ee76c2784119b44e[emoji sample]
 
 == Install
@@ -187,6 +188,47 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
     This is test.
 ----
 
+==== branch
+
+----
+<subject>
+
+<issueLink><body>
+----
+
+[source,yaml]
+----
+...
+issueLink:
+  type: branch
+  required: false
+  description: 'Github issue link'
+  regExp: 'issue([0-9]+)'
+  prefix: 'https://github.com/you/repository/issues/'
+  suffix: "\n"
+...
+----
+
+[source,shell]
+----
+$ git branch
+* issue123_hoge
+  master
+
+$ git consistent -i --subject="test" --body="This is test."
+
+$ git log -n 1
+commit a9d6457f3674c8620fbe72c769cee09ba5459f02
+Author: isuke <isuke770@gmail.com>
+Date:   Sat Feb 10 17:40:33 2018 +0900
+
+    test
+
+    https://github.com/you/repository/issues/123
+    This is test.
+----
+
+
 ==== spell check
 
 With `-t` option.
@@ -274,7 +316,7 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 
 | `type`
 | term's input type
-| `enum`, `string`, `text`, `variable`
+| `enum`, `string`, `text`, `variable`, `branch`
 
 | `required`
 | required?
@@ -294,6 +336,14 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 
 | `suffix`
 | a decoration to be attached after the input value
+| string
+
+| `regExp`
+| (`type: branch` only) regular expression for extracting values from branch names
+| string
+
+| `regExpMatchNum`
+| (`type: branch` only) number of values to retrieve from the match specified by `regExp`
 | string
 
 | `rules`
