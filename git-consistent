@@ -79,6 +79,5 @@ try {
     main(program, template, definitions, terms)
   }
 } catch (e) {
-  throw e
   console.error(`${colors.error}${e.message}${colors.reset}`)
 }
