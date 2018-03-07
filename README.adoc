@@ -408,6 +408,29 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 === feature
 ==== prompt history
 
+==== rule of 'regExp'
+
+[source,yaml]
+----
+subject:
+  type: string
+  required: true
+  description: 'The subject contains succinct description of the change'
+  rules:
+    regExp: '(fix|add|make|remove|rename)\s'
+    regExpFlag: 'i'
+----
+
+[source,shell]
+----
+$ git consistent --subject="Fix typo"
+
+$ git consistent --subject="fix typo"
+
+$ git consistent --subject="rename typo"
+subject must match /(fix|add|make|remove|rename)\s/i.
+----
+
 === Develop
 ==== test
 
