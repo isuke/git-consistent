@@ -22,8 +22,6 @@ image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consiste
 
 == Install
 
-**You need install https://github.com/junegunn/fzf[fzf] if you use interactive mode.**
-
 ----
 $ npm install -g git-consistent
 # or
