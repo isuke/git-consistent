@@ -5,6 +5,8 @@
 :sectnums:
 :sectnumlevels: 3
 :source-highlighter: highlightjs
+:toc:
+:toclevels: 1
 
 :author: isuke
 :email: isuke770@gmail.com
@@ -27,7 +29,7 @@ $ npm install -g git-consistent
 # or
 $ yarn global add git-consistent
 
-$ git config --global alias.con "consistent -i -t" # recommended option
+$ git config --global alias.con "consistent -i" # recommended option
 ----
 
 == Usage
@@ -390,13 +392,10 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 | `-i, --interactive`
 | run interactive mode
 
-| `-s, --skip-options`
-| skip not required term input (interactive mode only)
-
 | `-S, --silent`
-| dont show commit command
+| don't show commit command
 
-| `-t, --typo-check`,
+| `-t, --typo-check`
 | check spell
 
 | `-V, --version`

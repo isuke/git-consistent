@@ -54,7 +54,6 @@ try {
     .option(`-d, --duet`, 'run git-duet mode')
     .option(`-D, --dry-run`, 'run dry-run mode')
     .option(`-i, --interactive`, 'run interactive mode')
-    .option(`-s, --skip-options`, 'skip not required term input (interactive mode only)')
     .option(`-S, --silent`, "don't show commit command")
     .option(`-t, --typo-check`, "check spell")
     .option(`--gen-config`, "generate config files")
