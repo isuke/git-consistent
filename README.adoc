@@ -366,8 +366,8 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 | need dot (`.`) input value's last
 | boolean
 
-| `ascii`
-| allow ASCII?
+| `notAscii`
+| Use not ascii symbols
 | boolean
 
 | `numberOnly`
