@@ -30,7 +30,7 @@ $ npm install -g git-consistent
 $ yarn global add git-consistent
 ----
 
-=== optional settings
+=== Optional settings
 
 ----
 # set alias
@@ -47,6 +47,8 @@ $ export EDITOR='subl -w'
 
 == Usage
 
+=== Init
+
 [source,shell]
 ----
 $ git consistent --gen-config
@@ -59,7 +61,7 @@ You can edit them freely.
 Enjoy!
 ----
 
-=== output usage
+=== Output usage
 
 [source,shell]
 ----
@@ -78,14 +80,14 @@ $ git-consistent --help
     -h, --help               output usage information
 ----
 
-=== inline mode
+=== Inline mode
 
 [source,shell]
 ----
 $ git consistent --type="feat" --subject="implement new feature" --body="This is amazing feature."
 ----
 
-=== interactive mode
+=== Interactive mode
 
 [source,shell]
 ----
@@ -154,14 +156,6 @@ subject should put dot (.) at the end.
 $ git consistent --subject="ドキュメントを書いた"
 subject must be first latter is lowercase.
 subject should only alphabet.
-
-$ git consistent -i
-Enter subject:
-subject is required.
-Enter subject: Write documents.
-subject must be first latter is lowercase.
-subject should put dot (.) at the end.
-Enter subject: write document
 ----
 
 ==== variables
@@ -303,7 +297,7 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
     Signed-off-by: foo <foo@example.con>
 ----
 
-== sample type list
+== Type list sample
 
 link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[sample type list]
 
@@ -399,8 +393,7 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 | boolean
 |===
 
-
-== command options
+== Command options
 
 [cols="1,1", options="header"]
 |===
@@ -429,7 +422,7 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 ---
 
 == TODO
-=== feature
+=== Feature
 ==== prompt history
 
 ==== rule of 'regExp'
