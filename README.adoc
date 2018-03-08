@@ -374,7 +374,7 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 
 | rule key
 | rule's type
-| `firstLatter`, `dotAtEnd`, `ascii`, `numberOnly`
+| `firstLatter`, `dotAtEnd`, `nonAscii`, `numberOnly`
 
 | `firstLatter`
 | upper case or lower case about input value's first latter
