@@ -65,7 +65,7 @@ subject:
   rules:
     firstLatter: lower
     dotAtEnd: false
-    notAscii: false
+    nonAscii: false
 issueLink:
   type: branch
   required: false
@@ -82,4 +82,4 @@ body:
   rules:
     firstLatter: upper
     dotAtEnd: true
-    notAscii: false
+    nonAscii: false
