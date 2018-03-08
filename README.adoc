@@ -94,6 +94,17 @@ Enter body multiline:
 This is amazing feature.
 ----
 
+`--subject` have alias of `-m`.
+You can commit like you normally do!
+
+[source,shell]
+----
+$ git config --global alias.con "consistent -i"
+$ git con -m "write README"
+? Select type: docs
+git commit -m "docs: write README"
+----
+
 === Advance
 ==== Decorate
 
