@@ -89,8 +89,8 @@ a| image::arrow_heading_down.png[arrow_heading_down]
 | ui
 | UI
 | `:lipstick:`
-a| image::arrow_heading_down.png[lipstick]
-| not
+a| image::lipstick.png[lipstick]
+| no
 | when change UI
 
 | remove
