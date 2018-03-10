@@ -10,6 +10,7 @@ build,Builds,:arrow_heading_up:,commitizen,when changes build system
 ci,Continuous Integrations,:green_heart:,commitizen,when change the CI build
 chore,Chores,:wrench:,commitizen,when change other that don't modify code or test files
 revert,Reverts,:arrow_heading_down:,commitizen,when reverts a previous commit
+ui,UI,:lipstick:,,when change UI
 remove,Removes,:heavy_minus_sign:,,when removing function
 sec,Securities,:lock:,,when dealing with security
 up,Update dependencies,:arrow_up:,,when upgrading dependencies

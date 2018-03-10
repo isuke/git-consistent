@@ -86,6 +86,13 @@ a| image::arrow_heading_down.png[arrow_heading_down]
 | yes
 | when reverts a previous commit
 
+| ui
+| UI
+| `:lipstick:`
+a| image::arrow_heading_down.png[lipstick]
+| not
+| when change UI
+
 | remove
 | Removes
 | `:heavy_minus_sign:`
