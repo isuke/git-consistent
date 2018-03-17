@@ -27,6 +27,18 @@ const getProjectRoot = () => {
   }
 }
 
+const getFilePath = (rootPath, fileName) => {
+  let result
+
+  result = path.join(rootPath, fileName)
+  if (fs.existsSync(result)) return result
+
+  result = path.join(process.env.HOME, fileName)
+  if (fs.existsSync(result)) return result
+
+  throw new Error(`Not found '${fileName}'.`)
+}
+
 const loadDefinitions = (path) => {
   return yaml.safeLoad(fs.readFileSync(path, 'utf8'))
 }
@@ -66,8 +78,10 @@ try {
   } else {
     const projectRoot = getProjectRoot()
     const rootPath = projectRoot === "" ? process.env.HOME : projectRoot
-    const templateFilePath = path.join(rootPath, templateFileName)
-    const definitionsFilePath = path.join(rootPath, definitionsFileName)
+
+    const templateFilePath    = getFilePath(rootPath, templateFileName)
+    const definitionsFilePath = getFilePath(rootPath, definitionsFileName)
+
     const template = fs.readFileSync(templateFilePath, 'utf8')
     const definitions = loadDefinitions(definitionsFilePath)
     const terms = _.keys(definitions)
