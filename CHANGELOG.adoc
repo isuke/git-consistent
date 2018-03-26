@@ -1,0 +1,133 @@
+:chapter-label:
+:icons: font
+:lang: en
+:sectanchors:
+:sectnumlevels: 3
+:source-highlighter: highlightjs
+
+:author: isuke
+:email: isuke770@gmail.com
+
+= CHANGELOG
+
+== v0.9.1 2018-03-18
+
+* https://github.com/isuke/git-consistent/commit/d6e45e4[fix: fix get global setting file found bug]
+
+== v0.9.0 2018-03-10
+
+* https://github.com/isuke/git-consistent/commit/218c15c[fix(gen-config): fix generate type list bug]
+
+== v0.8.9 2018-03-10
+
+* https://github.com/isuke/git-consistent/commit/6cd15ed[chore: add ui to type list]
+
+== v0.8.8 2018-03-10
+
+* https://github.com/isuke/git-consistent/commit/b42e464[fix(gen-config): fix 'no such file or directory' error bug]
+
+== v0.8.7 2018-03-08
+
+* https://github.com/isuke/git-consistent/commit/bd2fd35[fix(main): trim value]
+
+== v0.8.6 2018-03-08
+
+* https://github.com/isuke/git-consistent/commit/4529abe[chore(main): add warning message for 'ascii']
+
+== v0.8.5 2018-03-08
+
+* https://github.com/isuke/git-consistent/commit/ad79a60[fix: rename 'ascii' rule to 'notAscii' rule (the meaning does not change)]
+
+== v0.8.0 2018-03-08
+
+* https://github.com/isuke/git-consistent/commit/a056146[refactor(main): make use inquirer]
+* https://github.com/isuke/git-consistent/commit/218c15c[refactor(gen-config): make use inquirer]
+
+== v0.7.3 2018-03-01
+
+* https://github.com/isuke/git-consistent/commit/bd71882[fix(main): fix error message when violate dotAtEnd rule]
+
+== v0.7.2 2018-03-01
+
+* https://github.com/isuke/git-consistent/commit/168611a[fix: remove debug code]
+
+== v0.7.1 2018-02-26
+
+* https://github.com/isuke/git-consistent/commit/1f504f6[feat(main): add regExpFlag option]
+
+== v0.7.0 2018-02-26
+
+* https://github.com/isuke/git-consistent/commit/33388d5[feat(main): implement type: branch]
+
+== v0.6.1 2018-02-25
+
+* https://github.com/isuke/git-consistent/commit/a7c6d0f[fix(main): fix first term ignore bug]
+
+== v0.6.0 2018-02-25
+
+* https://github.com/isuke/git-consistent/commit/6a24e28[feat(gen-config): implement gen-config]
+
+== v0.5.2 2018-02-13
+
+* https://github.com/isuke/git-consistent/commit/1f9e9ff[fix(main): fix exec git error when not a git repository]
+
+== v0.5.1 2018-02-12
+
+* https://github.com/isuke/git-consistent/commit/7a57cf3[feat(main): check enum value]
+
+== v0.5.0 2018-02-11
+
+* https://github.com/isuke/git-consistent/commit/6096ab6[fix(main): fix quotes escape bug]
+
+== v0.4.4 2018-02-11
+
+* https://github.com/isuke/git-consistent/commit/24aa1a8[feat(main): support emoji]
+
+== v0.4.3 2018-02-11
+
+* https://github.com/isuke/git-consistent/commit/eac3bf9[feat(main): implement spellcheck]
+
+== v0.4.2 2018-02-10
+
+* https://github.com/isuke/git-consistent/commit/7d0d3bc[feat(main): exit if not exist added files]
+
+== v0.4.1 2018-02-10
+
+* https://github.com/isuke/git-consistent/commit/33f9d5d[feat(main): add silent mode]
+* https://github.com/isuke/git-consistent/commit/fc81cce[feat(main): add numberOnly rule]
+
+== v0.4.0 2018-02-10
+
+* https://github.com/isuke/git-consistent/commit/1cc2942[fix(main): fix multiline format check bug]
+* https://github.com/isuke/git-consistent/commit/93bb6fa[feat(main): show command]
+* https://github.com/isuke/git-consistent/commit/2e35e18[feat(main): implement variable]
+
+== v0.3.0 2018-02-10
+
+* https://github.com/isuke/git-consistent/commit/0f964f3[feat(main): implement forment check]
+
+== v0.2.1 2018-02-10
+
+* https://github.com/isuke/git-consistent/commit/5870973[feat(main): add 'default' define option]
+* https://github.com/isuke/git-consistent/commit/23a7ae7[feat(main): support git-duet]
+* https://github.com/isuke/git-consistent/commit/0725454[feat(main): colorize messages]
+
+== v0.2.0 2018-02-10
+
+* https://github.com/isuke/git-consistent/commit/9ab139d[feat(main): support not required enum]
+* https://github.com/isuke/git-consistent/commit/a261cc1[feat: implement decorate function]
+* https://github.com/isuke/git-consistent/commit/157cad9[feat: add skip-options option]
+* https://github.com/isuke/git-consistent/commit/3d2198e[feat: improvement rquired value input]
+* https://github.com/isuke/git-consistent/commit/33b068d[feat: improvement error message]
+* https://github.com/isuke/git-consistent/commit/33b068d[feat: add '-m' option]
+
+
+== v0.1.1 2018-02-09
+
+* https://github.com/isuke/git-consistent/commit/56f084a[fix: fix required bug]
+
+== v0.1.0 2018-02-09
+
+* https://github.com/isuke/git-consistent/commit/cf2d49f[chore: create deploy command]
+
+== v0.0.1 2018-02-09
