@@ -67,7 +67,7 @@ try {
     .option(`-D, --dry-run`, 'run dry-run mode')
     .option(`-i, --interactive`, 'run interactive mode')
     .option(`-S, --silent`, "don't show commit command")
-    .option(`-t, --typo-check`, "check spell")
+    .option(`-t, --typo-check`, "[Already deleted this function] check spell")
     .option(`--gen-config`, "generate config files")
     .version(version)
 
