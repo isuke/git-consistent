@@ -66,6 +66,14 @@ subject:
     firstLatter: lower
     dotAtEnd: false
     nonAscii: false
+issueKeyword
+  type: branch
+  required: false
+  description: 'Github issue link'
+  regExp: 'issue([0-9]+)'
+  regExpFlag: 'i'
+  prefix: '(close #'
+  suffix: ")"
 issueLink:
   type: branch
   required: false
