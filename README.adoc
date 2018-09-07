@@ -246,18 +246,6 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
     This is test.
 ----
 
-
-==== spell check
-
-With `-t` option.
-
-[source,shell]
-----
-$ git consistent -t --type="feat" --scope="" --subject="this is some text we want to ceck for typos"
-git commit -m "feat: this is some text we want to ceck for typos"
-Is 'ceck' misspelled? Did you mean that? 'check', 'ceca', 'neck', 'cock', 'deck', 'peck', 'heck', 'beck', 'Peck', 'Beck', 'Keck'
-----
-
 ==== emoji
 
 [source,yml]
@@ -411,9 +399,6 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 
 | `-S, --silent`
 | don't show commit command
-
-| `-t, --typo-check`
-| check spell
 
 | `-V, --version`
 | output the version number

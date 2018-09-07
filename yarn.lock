@@ -22,16 +22,6 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-array-unique@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.1.1.tgz#b2dc8ec765d306537d7291e0e621e849d2573cf9"
-
-async@^2.1.4:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
-  dependencies:
-    lodash "^4.14.0"
-
 chalk@^2.0.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.2.tgz#250dc96b07491bfd601e648d66ddf5f60c7a5c65"
@@ -72,10 +62,6 @@ csv-parse@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-2.0.4.tgz#5b469596766ee07f2cbd71aced7ae76b3c73c901"
 
-dictionary-en-us@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dictionary-en-us/-/dictionary-en-us-2.0.0.tgz#b9135f403444bb5e4b3cf465fb7d3f2fd276a839"
-
 escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -105,10 +91,6 @@ has-flag@^3.0.0:
 iconv-lite@^0.4.17:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
-
-in-publish@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.0.tgz#e20ff5e3a2afc2690320b6dc552682a9c7fadf51"
 
 inquirer@^5.1.0:
   version "5.1.0"
@@ -147,7 +129,7 @@ lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
 
-lodash@^4.14.0, lodash@^4.17.5, lodash@^4.3.0:
+lodash@^4.17.5, lodash@^4.3.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -165,19 +147,6 @@ node-emoji@^1.8.1:
   dependencies:
     lodash.toarray "^4.4.0"
 
-nodehun-sentences@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/nodehun-sentences/-/nodehun-sentences-1.0.4.tgz#a4aef2d7707d7d568133806e957a6a4ab9eb9106"
-  dependencies:
-    async "^2.1.4"
-    in-publish "^2.0.0"
-    partial "^0.0.3"
-    unique-words "^1.0.0"
-
-nodehun@^2.0.11:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/nodehun/-/nodehun-2.0.11.tgz#cbba5595720f325fb247fb0e7e2018a56f7ed188"
-
 onetime@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
@@ -187,10 +156,6 @@ onetime@^2.0.0:
 os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
-
-partial@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/partial/-/partial-0.0.3.tgz#2d107bed98fcea8d28d7665495b39e61dfcd18c6"
 
 prompt-sync@^4.1.5:
   version "4.1.5"
@@ -255,9 +220,3 @@ tmp@^0.0.33:
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
   dependencies:
     os-tmpdir "~1.0.2"
-
-unique-words@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/unique-words/-/unique-words-1.0.0.tgz#40b26a19f98061663c813cd97a1a20a7f8b55990"
-  dependencies:
-    array-unique "^0.1.1"

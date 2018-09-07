@@ -66,7 +66,7 @@ subject:
     firstLatter: lower
     dotAtEnd: false
     nonAscii: false
-issueKeyword
+issueKeyword:
   type: branch
   required: false
   description: 'Github issue link'
