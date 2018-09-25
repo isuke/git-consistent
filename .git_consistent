@@ -66,6 +66,7 @@ subject:
     firstLatter: lower
     dotAtEnd: false
     nonAscii: false
+    minLength: 10
 issueKeyword:
   type: branch
   required: false

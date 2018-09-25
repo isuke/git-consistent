@@ -379,6 +379,14 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 | `numberOnly`
 | number only?
 | boolean
+
+| `maxLength`
+| max length of string
+| integer
+
+| `minLength`
+| min length of string
+| integer
 |===
 
 == Command options
