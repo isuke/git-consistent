@@ -16,7 +16,9 @@
   "private": false,
   "preferGlobal": true,
   "scripts": {
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "lint": "eslint lib/**/*.js",
+    "fix": "eslint --fix lib/**/*.js"
   },
   "dependencies": {
     "commander": "^2.14.1",
@@ -26,5 +28,11 @@
     "lodash": "^4.17.5",
     "node-emoji": "^1.8.1",
     "prompt-sync": "^4.1.5"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.3"
   }
 }
