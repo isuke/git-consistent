@@ -93,4 +93,5 @@ try {
   }
 } catch (e) {
   console.error(`${colors.error}${e.message}${colors.reset}`)
+  e.status ? process.exit(e.status) : process.exit(1)
 }
