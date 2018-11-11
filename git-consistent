@@ -58,6 +58,17 @@ const setOptions = (program, definitions, terms) => {
   }
 }
 
+const customHelp = (program, templateFilePath, definitionsFilePath) => {
+  program.on('--help', () => {
+    console.log('')
+    console.log('')
+    console.log('  File Paths:')
+    console.log('')
+    console.log(`    ${templateFileName}:\t ${templateFilePath}`)
+    console.log(`    ${definitionsFileName}:    \t ${definitionsFilePath}`)
+  })
+}
+
 //
 // Main
 //
@@ -85,6 +96,8 @@ try {
     const template = fs.readFileSync(templateFilePath, 'utf8')
     const definitions = loadDefinitions(definitionsFilePath)
     const terms = _.keys(definitions)
+
+    customHelp(program, templateFilePath, definitionsFilePath)
 
     setOptions(program, definitions, terms)
       .parse(process.argv)
