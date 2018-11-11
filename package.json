@@ -17,8 +17,9 @@
   "preferGlobal": true,
   "scripts": {
     "deploy": "./deploy.sh",
-    "lint": "eslint lib/**/*.js",
-    "fix": "eslint --fix lib/**/*.js"
+    "lint": "eslint lib/**/*.js test/**/*.js",
+    "fix": "eslint --fix lib/**/*.js test/**/*.js",
+    "test": "ava --verbose"
   },
   "dependencies": {
     "commander": "^2.14.1",
@@ -30,9 +31,12 @@
     "prompt-sync": "^4.1.5"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^2.6.2",
-    "prettier": "^1.14.3"
+    "outdent": "^0.7.0",
+    "prettier": "^1.14.3",
+    "sinon": "^7.1.1"
   }
 }
