@@ -10,6 +10,11 @@
 
 = CHANGELOG
 
+== v0.9.5 2018-11-12
+
+* https://github.com/isuke/git-consistent/commit/ca3f275[up: upgrade node to 11]
+* https://github.com/isuke/git-consistent/commit/896a260[feat: add file paths to help]
+
 == v0.9.4 2018-10-18
 
 * https://github.com/isuke/git-consistent/commit/769c987[fix(main): fix error occured when first commit (close #3)]
