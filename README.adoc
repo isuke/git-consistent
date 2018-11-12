@@ -11,7 +11,7 @@
 :author: isuke
 :email: isuke770@gmail.com
 
-= git-consistent image:https://travis-ci.org/isuke/git-consistent.svg?branch=master["Build Status", link="https://travis-ci.org/isuke/git-consistent"] image:https://img.shields.io/npm/v/git-consistent.svg["npm",link="https://www.npmjs.com/package/git-consistent"]
+= git-consistent image:https://travis-ci.org/isuke/git-consistent.svg?branch=master["Build Status", link="https://travis-ci.org/isuke/git-consistent"] image:https://img.shields.io/npm/v/git-consistent.svg["npm",link="https://www.npmjs.com/package/git-consistent"] image:https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg["git-consistent friendly",link="https://github.com/isuke/git-consistent"]
 
 image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif[]
 
@@ -413,6 +413,25 @@ link:https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc[s
 | `-V, --version`
 | output the version number
 |===
+
+== Badges
+
+image:https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg[git-consistent friendly]
+
+* Markdown
+----
+[![git-consistent friendly](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)](https://github.com/isuke/git-consistent)
+----
+
+* reStructuredText
+----
+.. image:: https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg   :alt: git-consistent friendly   :target: https://github.com/isuke/git-consistent
+----
+
+* AsciiDoc
+----
+image:https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg["git-consistent friendly",link="https://github.com/isuke/git-consistent"]
+----
 
 ---
 
