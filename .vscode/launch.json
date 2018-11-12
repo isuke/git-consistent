@@ -1,0 +1,34 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/git-consistent",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "-i",
+        "--type='feat'",
+        "--scope=''",
+        // "--subject='this is test'",
+        "-D"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Test",
+      "program": "${workspaceRoot}/node_modules/ava/profile.js",
+      "args": [
+        "${file}"
+      ],
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ]
+    }
+  ]
+}
