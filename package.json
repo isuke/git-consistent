@@ -1,20 +1,24 @@
 {
   "name": "git-consistent",
   "version": "0.9.5",
-  "description": "Give consistency to your project git logs.",
-  "bin": {
-    "git-consistent": "git-consistent"
-  },
-  "repository": "git@github.com:isuke/git-consistent.git",
-  "author": "isuke <isuke770@gmail.com>",
-  "license": "MIT",
+  "description": "Give consistency to your project's git logs.",
   "keywords": [
     "git",
     "commit",
     "commitizen"
   ],
+  "homepage": "https://github.com/isuke/git-consistent",
+  "repository": "git@github.com:isuke/git-consistent.git",
+  "author": "isuke <isuke770@gmail.com>",
+  "license": "MIT",
   "private": false,
   "preferGlobal": true,
+  "engines": {
+    "node": "<=11.0.0"
+  },
+  "bin": {
+    "git-consistent": "git-consistent"
+  },
   "scripts": {
     "deploy": "./deploy.sh",
     "lint": "eslint lib/**/*.js test/**/*.js",
