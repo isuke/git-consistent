@@ -11,9 +11,11 @@
 :author: isuke
 :email: isuke770@gmail.com
 
-= git-consistent image:https://travis-ci.org/isuke/git-consistent.svg?branch=master["Build Status", link="https://travis-ci.org/isuke/git-consistent"]
+= git-consistent image:https://travis-ci.org/isuke/git-consistent.svg?branch=master["Build Status", link="https://travis-ci.org/isuke/git-consistent"] image:https://img.shields.io/npm/v/git-consistent.svg["npm",link="https://www.npmjs.com/package/git-consistent"]
 
 image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif[]
+
+Give consistency to your project's git logs.
 
 == Samples
 
