@@ -1,6 +1,6 @@
 {
   "name": "git-consistent",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Give consistency to your project git logs.",
   "bin": {
     "git-consistent": "git-consistent"
