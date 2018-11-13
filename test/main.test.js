@@ -4,6 +4,14 @@ const outdent = require('outdent')
 
 const main = require('../lib/main')
 
+test.beforeEach((t) => {
+  t.context.consoleStub = sinon.stub(console, 'log')
+})
+
+test.afterEach((t) => {
+  t.context.consoleStub.restore()
+})
+
 test('main : simple case', async (t) => {
   const type = 'feat'
   const subject = 'first commit'
@@ -38,8 +46,6 @@ test('main : simple case', async (t) => {
   }
   const terms = ['type', 'subject', `body`]
 
-  const consoleSpy = sinon.spy(console, 'log')
-
   const expectedCommitMessage = outdent`
     feat: first commit
 
@@ -47,7 +53,5 @@ test('main : simple case', async (t) => {
   `
 
   await main(program, template, definitions, terms)
-  t.true(consoleSpy.calledWith(expectedCommitMessage))
-
-  t.pass()
+  t.true(t.context.consoleStub.calledWith(expectedCommitMessage))
 })
