@@ -18,6 +18,12 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
+# Check existing README.md
+if [ ! -f README.md ]; then
+  printf "${RED}'README.md' is not existing\n${RESET}"
+  exit 1
+fi
+
 printf "${GEEEN}Rewite git-consistent\n${RESET}"
 gsed -r -i "s/const version = '[0-9]+\.[0-9]+\.[0-9]+'/const version = '$VERSION'/g" git-consistent
 git add git-consistent
