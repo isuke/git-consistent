@@ -17,7 +17,7 @@
     "node": "<=11.0.0"
   },
   "bin": {
-    "git-consistent": "git-consistent"
+    "git-consistent": "./lib/index.js"
   },
   "scripts": {
     "deploy": "./deploy.sh",
