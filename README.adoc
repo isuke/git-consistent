@@ -51,13 +51,14 @@ $ export EDITOR='subl -w'
 
 === Init
 
-[source,shell]
+[source, shell]
 ----
-$ git consistent --gen-config
+$ git consistent init
 Use Type? (Y/n): Y
 Use Emoji? (y/N): N
 Does the subject start with lower case? (Y/n): Y
 Does the subject put dot (.) at end? (y/N): Y
+
 Generated '.gitcommit_template' and '.git_consistent'.
 You can edit them freely.
 Enjoy!
@@ -65,7 +66,7 @@ Enjoy!
 
 === Output usage
 
-[source,shell]
+[source, shell]
 ----
 $ git-consistent --help
 
@@ -84,14 +85,14 @@ $ git-consistent --help
 
 === Inline mode
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent --type="feat" --subject="implement new feature" --body="This is amazing feature."
 ----
 
 === Interactive mode
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent -i
 Select type: feat
@@ -103,7 +104,7 @@ This is amazing feature.
 You can use both mode interactive and inline at the same time.
 In that case, you input value that are not given as option only.
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent -i --subject="implement new feature"
 Select type: feat
@@ -114,7 +115,7 @@ This is amazing feature.
 `--subject` have alias of `-m`.
 You can commit like you normally do!
 
-[source,shell]
+[source, shell]
 ----
 $ git config --global alias.con "consistent -i"
 $ git con -m "write README"
@@ -125,7 +126,7 @@ git commit -m "docs: write README"
 === Advance
 ==== Decorate
 
-[source,yaml]
+[source, yaml]
 ----
 scope:
   type: text
@@ -137,7 +138,7 @@ scope:
 
 ==== format check
 
-[source,yaml]
+[source, yaml]
 ----
 subject:
   type: string
@@ -149,7 +150,7 @@ subject:
     ascii: false
 ----
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent --subject="Write documents."
 subject must be first latter is lowercase.
@@ -169,7 +170,7 @@ subject should only alphabet.
 <body>
 ----
 
-[source,yaml]
+[source, yaml]
 ----
 githubIssueNum:
   type: string
@@ -192,7 +193,7 @@ body:
   description: 'The body contains details of the change'
 ----
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent -i --subject="test" --body="This is test."
 Enter githubIssueNum: 12
@@ -216,7 +217,7 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
 <issueLink><body>
 ----
 
-[source,yaml]
+[source, yaml]
 ----
 ...
 issueLink:
@@ -229,7 +230,7 @@ issueLink:
 ...
 ----
 
-[source,shell]
+[source, shell]
 ----
 $ git branch
 * issue123_hoge
@@ -250,7 +251,7 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
 
 ==== emoji
 
-[source,yml]
+[source, yml]
 ----
 emoji:
   type: enum
@@ -274,7 +275,7 @@ image:https://raw.githubusercontent.com/isuke/git-consistent/images/git-consiste
 
 Run https://github.com/git-duet/git-duet[git-duet] mode when with `-d` option.
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent -d --type="feat" --subject="duet test" --body=""
 
@@ -441,7 +442,7 @@ image:https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg["git
 
 ==== rule of 'regExp'
 
-[source,yaml]
+[source, yaml]
 ----
 subject:
   type: string
@@ -452,7 +453,7 @@ subject:
     regExpFlag: 'i'
 ----
 
-[source,shell]
+[source, shell]
 ----
 $ git consistent --subject="Fix typo"
 
@@ -460,12 +461,4 @@ $ git consistent --subject="fix typo"
 
 $ git consistent --subject="rename typo"
 subject must match /(fix|add|make|remove|rename)\s/i.
-----
-
-=== Develop
-==== test
-
-[source,shell]
-----
-$ yarn run test
 ----
