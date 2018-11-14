@@ -10,6 +10,12 @@
 
 = CHANGELOG
 
+== v0.9.6 2018-11-14
+
+* https://github.com/isuke/git-consistent/commit/a8b7546[feat(gen-config): change '--gen-config' option to 'init' command]
+* https://github.com/isuke/git-consistent/commit/2b93432[fix(main): fix can not catch error bug]
+* https://github.com/isuke/git-consistent/commit/c2a3991[up: upgrade 'commander']
+
 == v0.9.5 2018-11-12
 
 * https://github.com/isuke/git-consistent/commit/ca3f275[up: upgrade node to 11]
