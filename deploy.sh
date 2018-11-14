@@ -24,9 +24,9 @@ if [ ! -f README.md ]; then
   exit 1
 fi
 
-printf "${GEEEN}Rewite git-consistent\n${RESET}"
-gsed -r -i "s/const version = '[0-9]+\.[0-9]+\.[0-9]+'/const version = '$VERSION'/g" git-consistent
-git add git-consistent
+printf "${GEEEN}Rewite lib/index.js\n${RESET}"
+gsed -r -i "s/const version = '[0-9]+\.[0-9]+\.[0-9]+'/const version = '$VERSION'/g" lib/index.js
+git add lib/index.js
 
 printf "${GEEEN}Rewite package.json\n${RESET}"
 gsed -r -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$VERSION\"/g" package.json
