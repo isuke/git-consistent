@@ -28,7 +28,6 @@ test('main : simple case', async (t) => {
 
     <body>
   `
-
   const definitions = {
     type: {
       type: 'enum',
@@ -44,7 +43,6 @@ test('main : simple case', async (t) => {
       required: false,
     },
   }
-  const terms = ['type', 'subject', `body`]
 
   const expectedCommitMessage = outdent`
     feat: first commit
@@ -52,6 +50,6 @@ test('main : simple case', async (t) => {
     this is body
   `
 
-  await main(program, template, definitions, terms)
+  await main(program, template, definitions)
   t.true(t.context.consoleStub.calledWith(expectedCommitMessage))
 })
