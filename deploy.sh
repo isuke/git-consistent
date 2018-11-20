@@ -28,6 +28,10 @@ printf "${GEEEN}Rewite lib/index.js\n${RESET}"
 gsed -r -i "s/const version = '[0-9]+\.[0-9]+\.[0-9]+'/const version = '$VERSION'/g" lib/index.js
 git add lib/index.js
 
+printf "${GEEEN}Rewite test/index.test.js\n${RESET}"
+gsed -r -i "s/const version = '[0-9]+\.[0-9]+\.[0-9]+'/const version = '$VERSION'/g" test/index.test.js
+git add test/index.test.js
+
 printf "${GEEEN}Rewite package.json\n${RESET}"
 gsed -r -i "s/\"version\": \"[0-9]+\.[0-9]+\.[0-9]+\"/\"version\": \"$VERSION\"/g" package.json
 git add package.json
