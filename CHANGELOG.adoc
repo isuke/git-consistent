@@ -10,6 +10,10 @@
 
 = CHANGELOG
 
+== v0.9.6 2019-01-01
+
+* https://github.com/isuke/git-consistent/commit/719f65f[up: upgrade node to v11.6.0]
+
 == v0.9.6 2018-11-14
 
 * https://github.com/isuke/git-consistent/commit/a8b7546[feat(gen-config): change '--gen-config' option to 'init' command]
