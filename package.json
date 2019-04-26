@@ -14,7 +14,7 @@
   "private": false,
   "preferGlobal": true,
   "engines": {
-    "node": "<=11"
+    "node": "<=12"
   },
   "bin": {
     "git-consistent": "./lib/index.js"
