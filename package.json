@@ -1,6 +1,6 @@
 {
   "name": "git-consistent",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "Give consistency to your project's git logs.",
   "keywords": [
     "git",

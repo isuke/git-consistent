@@ -10,6 +10,12 @@
 
 = CHANGELOG
 
+== v0.9.9 2019-06-09
+
+* https://github.com/isuke/git-consistent/commit/17cbaa4[up: upgrade devDependencies]
+* https://github.com/isuke/git-consistent/commit/a1f3742[up: upgrade dependencies]
+* https://github.com/isuke/git-consistent/commit/887f218[up: upgrade node to v12.4.0]
+
 == v0.9.8 2019-04-26
 
 * https://github.com/isuke/git-consistent/commit/d7f5c48[up: upgrade node to v12.0.0]
