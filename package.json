@@ -35,12 +35,12 @@
     "prompt-sync": "^4.1.7"
   },
   "devDependencies": {
-    "ava": "^1.0.1",
-    "eslint": "^5.6.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-prettier": "^2.6.2",
+    "ava": "^2.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "outdent": "^0.7.0",
-    "prettier": "^1.14.3",
-    "sinon": "^7.1.1"
+    "prettier": "^1.18.2",
+    "sinon": "^7.3.2"
   }
 }
