@@ -5,7 +5,6 @@ notifications:
 language: node_js
 node_js:
   - "10"
-  - "11"
   - "12"
 script:
   - yarn run lint
