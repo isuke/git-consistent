@@ -35,10 +35,11 @@
     "prompt-sync": "^4.1.7"
   },
   "devDependencies": {
-    "ava": "^2.2.0",
+    "ava": "^2.3.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "lodash.merge": "^4.6.2",
     "outdent": "^0.7.0",
     "prettier": "^1.18.2",
     "sinon": "^7.3.2"
