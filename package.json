@@ -27,12 +27,12 @@
   },
   "dependencies": {
     "commander": "4.1.1",
-    "csv-parse": "4.6.5",
-    "inquirer": "7.0.0",
-    "js-yaml": "^3.13.1",
-    "lodash": "^4.17.15",
-    "node-emoji": "^1.10.0",
-    "prompt-sync": "^4.1.7"
+    "csv-parse": "4.8.9",
+    "inquirer": "7.1.0",
+    "js-yaml": "3.13.1",
+    "lodash": "4.17.15",
+    "node-emoji": "1.10.0",
+    "prompt-sync": "4.2.0"
   },
   "devDependencies": {
     "ava": "3.7.1",
