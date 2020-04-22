@@ -10,6 +10,14 @@
 
 = CHANGELOG
 
+== v1.0.4 2020-04-22
+
+* https://github.com/isuke/git-consistent/commit/fbb21e7b[up: upgrade dependencies]
+* https://github.com/isuke/git-consistent/commit/f2764400[up: upgrade commander to 4.1.1]
+* https://github.com/isuke/git-consistent/commit/fb4e6bc6[up: upgrade devDependencies for Security Alerts]
+* https://github.com/isuke/git-consistent/commit/f128e85c[up: upgrade node to v12.16.2]
+* https://github.com/isuke/git-consistent/commit/f5420652[chore: remove unnecessary file]
+
 == v1.0.3 2019-10-26
 
 * https://github.com/isuke/git-consistent/commit/fc08d88[up: upgrade inquirer]
