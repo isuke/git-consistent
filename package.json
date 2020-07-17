@@ -30,7 +30,7 @@
     "csv-parse": "4.11.1",
     "inquirer": "7.3.2",
     "js-yaml": "3.14.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "node-emoji": "1.10.0",
     "prompt-sync": "4.2.0"
   },
