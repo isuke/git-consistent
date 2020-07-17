@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "commander": "4.1.1",
-    "csv-parse": "4.8.9",
+    "csv-parse": "4.11.1",
     "inquirer": "7.1.0",
     "js-yaml": "3.13.1",
     "lodash": "4.17.15",
