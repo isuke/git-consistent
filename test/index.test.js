@@ -10,5 +10,5 @@ test('--version', (t) => {
     .toString()
     .trim()
 
-  t.is(output, '1.0.4')
+  t.is(output, '1.1.0')
 })
