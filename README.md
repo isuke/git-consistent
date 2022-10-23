@@ -39,7 +39,7 @@ $ export EDITOR='subl -w'
 ### Init
 
 ```sh
-$ git consistent init
+$ git consistent --init
 Use Type? (Y/n): Y
 Use Emoji? (y/N): N
 Does the subject start with lower case? (Y/n): Y
@@ -311,6 +311,7 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 | `-D, --dry-run`     | run dry-run mode          |
 | `-i, --interactive` | run interactive mode      |
 | `-S, --silent`      | don't show commit command |
+| `-I, --init`        | generate config files     |
 | `-V, --version`     | output the version number |
 
 ## Badges

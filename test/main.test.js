@@ -1,8 +1,8 @@
-const test = require('ava')
-const sinon = require('sinon')
-const outdent = require('outdent')
+import test from 'ava'
+import sinon from './../node_modules/sinon/pkg/sinon-esm.js'
+import outdent from 'outdent'
 
-const main = require('../lib/main')
+import main from './../lib/main.js'
 
 test.beforeEach((t) => {
   t.context.consoleStub = sinon.stub(console, 'log')
@@ -16,12 +16,15 @@ test('main : simple case', async (t) => {
   const type = 'feat'
   const subject = 'first commit'
   const body = `this is body`
-  const program = {
-    type: type,
-    subject: subject,
-    body: body,
-    dryRun: true,
-    silent: true,
+  const program = {}
+  program.opts = function () {
+    return {
+      type: type,
+      subject: subject,
+      body: body,
+      dryRun: true,
+      silent: true,
+    }
   }
   const template = outdent`
     <type>: <subject>

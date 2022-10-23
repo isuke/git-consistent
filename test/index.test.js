@@ -1,6 +1,9 @@
-const test = require('ava')
-const execSync = require('child_process').execSync
-const path = require('path')
+import test from 'ava'
+import path from 'path'
+import url from 'url'
+import { execSync } from 'child_process'
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 test('--version', (t) => {
   const output = execSync(`${path.join(__dirname, '../lib/index.js')} --version`)

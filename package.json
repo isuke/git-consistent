@@ -16,6 +16,7 @@
   "engines": {
     "node": "<=12"
   },
+  "type": "module",
   "bin": {
     "git-consistent": "./lib/index.js"
   },
@@ -26,21 +27,21 @@
     "test": "ava --verbose"
   },
   "dependencies": {
-    "commander": "4.1.1",
-    "csv-parse": "4.11.1",
-    "inquirer": "7.3.2",
-    "js-yaml": "3.14.0",
-    "lodash": "4.17.19",
-    "node-emoji": "1.10.0",
+    "commander": "9.4.1",
+    "csv-parse": "5.3.1",
+    "inquirer": "9.1.4",
+    "js-yaml": "4.1.0",
+    "lodash": "4.17.21",
+    "node-emoji": "1.11.0",
     "prompt-sync": "4.2.0"
   },
   "devDependencies": {
-    "ava": "3.10.1",
-    "eslint": "7.4.0",
-    "eslint-config-prettier": "6.11.0",
-    "eslint-plugin-prettier": "3.1.4",
-    "outdent": "0.7.1",
-    "prettier": "2.0.5",
-    "sinon": "9.0.2"
+    "ava": "4.3.3",
+    "eslint": "8.26.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "outdent": "0.8.0",
+    "prettier": "2.7.1",
+    "sinon": "14.0.1"
   }
 }
