@@ -1,0 +1,51 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+
+jobs:
+  lint:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn run lint
+  test_node14:
+    docker:
+      - image: cimg/node:14.20
+    steps:
+      - checkout
+      - run: yarn --ignore-engines
+      - run: yarn run test
+  test_node16:
+    docker:
+      - image: cimg/node:16.18
+    steps:
+      - checkout
+      - run: yarn --ignore-engines
+      - run: yarn run test
+  test_node17:
+    docker:
+      - image: cimg/node:17.9
+    steps:
+      - checkout
+      - run: yarn --ignore-engines
+      - run: yarn run test
+  test_node18:
+    docker:
+      - image: cimg/node:18.11
+    steps:
+      - checkout
+      - run: yarn --ignore-engines
+      - run: yarn run test
+
+workflows:
+  version: 2.1
+  lint-and-test:
+    jobs:
+      - lint
+      - test_node14
+      - test_node16
+      - test_node17
+      - test_node18

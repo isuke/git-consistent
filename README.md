@@ -1,8 +1,13 @@
-# git-consistent [!["Build Status"](https://travis-ci.org/isuke/git-consistent.svg?branch=master)](https://travis-ci.org/isuke/git-consistent) [!["npm"](https://img.shields.io/npm/v/git-consistent.svg)](https://www.npmjs.com/package/git-consistent) [!["git-consistent friendly"](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)]("https://github.com/isuke/git-consistent")
+# git-consistent [![CircleCI](https://dl.circleci.com/status-badge/img/gh/isuke/git-consistent/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/isuke/git-consistent/tree/master) [!["npm"](https://img.shields.io/npm/v/git-consistent.svg)](https://www.npmjs.com/package/git-consistent) [!["git-consistent friendly"](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)]("https://github.com/isuke/git-consistent")
 
 ![](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif)
 
 Give consistency to your project's git logs.
+
+[!["node v14"](https://img.shields.io/badge/node-v14-026e00.svg)](https://nodejs.org/ja/download/releases/)
+[!["node v16"](https://img.shields.io/badge/node-v16-026e00.svg)](https://nodejs.org/ja/download/releases/)
+[!["node v17"](https://img.shields.io/badge/node-v17-026e00.svg)](https://nodejs.org/ja/download/releases/)
+[!["node v18"](https://img.shields.io/badge/node-v18-026e00.svg)](https://nodejs.org/ja/download/releases/)
 
 ## Samples
 

@@ -13,9 +13,6 @@
   "license": "MIT",
   "private": false,
   "preferGlobal": true,
-  "engines": {
-    "node": "<=12"
-  },
   "type": "module",
   "bin": {
     "git-consistent": "./lib/index.js"
