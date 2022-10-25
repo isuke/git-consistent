@@ -137,7 +137,7 @@ subject:
 ```sh
 $ git consistent --subject="Write documents."
 subject must be first latter is lowercase.
-subject should put dot (.) at the end.
+subject should not put dot (.) at the end.
 
 $ git consistent --subject="ドキュメントを書いた"
 subject must be first latter is lowercase.
