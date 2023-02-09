@@ -129,18 +129,18 @@ subject:
   required: true
   description: 'The subject contains succinct description of the change'
   rules:
-    firstLatter: lower
+    firstLetter: lower
     dotAtEnd: false
     ascii: false
 ```
 
 ```sh
 $ git consistent --subject="Write documents."
-subject must be first latter is lowercase.
+subject must be first letter is lowercase.
 subject should not put dot (.) at the end.
 
 $ git consistent --subject="ドキュメントを書いた"
-subject must be first latter is lowercase.
+subject must be first letter is lowercase.
 subject should only alphabet.
 ```
 
@@ -300,8 +300,8 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 | `regExpMatchNum` | (`type: branch` only) number of values to retrieve from the match specified by `regExp` | string                              |
 | `regExpFlag`     | (`type: branch` only) `regExp`'s falg              | `i`                                                                      |
 | `rules`          | input value format rules                           | Object                                                                   |
-| rule key         | rule's type                                        | `firstLatter`, `dotAtEnd`, `nonAscii`, `numberOnly`                      |
-| `firstLatter`    | upper case or lower case about input value's first latter                               | `upper`, `lower`                    |
+| rule key         | rule's type                                        | `firstLetter`, `dotAtEnd`, `nonAscii`, `numberOnly`                      |
+| `firstLetter`    | upper case or lower case about input value's first letter                               | `upper`, `lower`                    |
 | `dotAtEnd`       | need dot (`.`) input value's last                  | boolean                                                                  |
 | `nonAscii`       | Use not ascii symbols                              | boolean                                                                  |
 | `numberOnly`     | number only?                                       | boolean                                                                  |

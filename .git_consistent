@@ -63,7 +63,7 @@ subject:
   required: true
   description: 'The subject contains succinct description of the change'
   rules:
-    firstLatter: lower
+    firstLetter: lower
     dotAtEnd: false
     nonAscii: false
 issueKeyword:
@@ -88,6 +88,6 @@ body:
   required: false
   description: 'The body contains details of the change'
   rules:
-    firstLatter: upper
+    firstLetter: upper
     dotAtEnd: true
     nonAscii: false
