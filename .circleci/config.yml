@@ -9,36 +9,32 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: yarn
-      - run: yarn run lint
+      - run: npm
+      - run: npm run lint
   test_node14:
     docker:
       - image: cimg/node:14.20
     steps:
       - checkout
-      - run: yarn --ignore-engines
-      - run: yarn run test
+      - run: npm run test
   test_node16:
     docker:
       - image: cimg/node:16.18
     steps:
       - checkout
-      - run: yarn --ignore-engines
-      - run: yarn run test
+      - run: npm run test
   test_node17:
     docker:
       - image: cimg/node:17.9
     steps:
       - checkout
-      - run: yarn --ignore-engines
-      - run: yarn run test
+      - run: npm run test
   test_node18:
     docker:
       - image: cimg/node:18.11
     steps:
       - checkout
-      - run: yarn --ignore-engines
-      - run: yarn run test
+      - run: npm run test
 
 workflows:
   version: 2.1

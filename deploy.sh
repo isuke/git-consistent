@@ -40,4 +40,4 @@ printf "${GEEEN}git commit\n${RESET}"
 git commit -m "tada: upgrade to v$VERSION"
 git tag v$VERSION
 
-printf "${GEEEN}Please command 'git push origin master && git push origin v$VERSION && yarn publish'\n${RESET}"
+printf "${GEEEN}Please command 'git push origin master && git push origin v$VERSION && npm publish'\n${RESET}"
