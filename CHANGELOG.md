@@ -1,10 +1,19 @@
 # CHANGELOG
 
+## v1.1.3 2023-02-09
+
+- [chore: fix typo](https://github.com/isuke/git-consistent/commit/9ef4594)
+
+## v1.1.1 2022-10-23
+
+- [up: upgrade dependencies and devDependencies](https://github.com/isuke/git-consistent/commit/11173e4)
+
+
 ## v1.0.4 2020-04-22
 
 - [up: upgrade dependencies](https://github.com/isuke/git-consistent/commit/bb21e7b)
 - [up: upgrade commander to 4.1.1](https://github.com/isuke/git-consistent/commit/2764400)
-- [up: upgrade devDependencies for Security Alerts](https://github.com/isuke/git-consistent/commit/b4e6bc6ｓ)
+- [up: upgrade devDependencies for Security Alerts](https://github.com/isuke/git-consistent/commit/b4e6bc6)
 - [up: upgrade node to v12.16.2](https://github.com/isuke/git-consistent/commit/128e85c)
 - [chore: remove unnecessary file](https://github.com/isuke/git-consistent/commit/5420652)
 
