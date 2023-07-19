@@ -267,7 +267,7 @@ Date:   Sat Feb 10 15:13:40 2018 +0900
 
 ## Type list sample
 
-[sample type list](https://github.com/isuke/git-consistent/blob/master/sample_type_list.adoc)
+[sample type list](https://github.com/isuke/git-consistent/blob/master/sample_type_list.md)
 
 ## .git_consistent format
 
