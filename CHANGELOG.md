@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.1.4 2023-09-01
+
+- [up: upgrade dependencies](https://github.com/isuke/git-consistent/commit/88750d2)
+- [up: upgrade node to 20.5.0](https://github.com/isuke/git-consistent/commit/0f2dde1)
+
 ## v1.1.3 2023-02-09
 
 - [chore: fix typo](https://github.com/isuke/git-consistent/commit/9ef4594)
