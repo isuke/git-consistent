@@ -4,10 +4,11 @@
 
 Give consistency to your project's git logs.
 
-[!["node v14"](https://img.shields.io/badge/node-v14-026e00.svg)](https://nodejs.org/ja/download/releases/)
-[!["node v16"](https://img.shields.io/badge/node-v16-026e00.svg)](https://nodejs.org/ja/download/releases/)
-[!["node v17"](https://img.shields.io/badge/node-v17-026e00.svg)](https://nodejs.org/ja/download/releases/)
-[!["node v18"](https://img.shields.io/badge/node-v18-026e00.svg)](https://nodejs.org/ja/download/releases/)
+[!["node v14"](https://img.shields.io/badge/node-v14-026e00.svg)](https://nodejs.org/en/download/releases)
+[!["node v16"](https://img.shields.io/badge/node-v16-026e00.svg)](https://nodejs.org/en/download/releases)
+[!["node v17"](https://img.shields.io/badge/node-v17-026e00.svg)](https://nodejs.org/en/download/releases)
+[!["node v18"](https://img.shields.io/badge/node-v18-026e00.svg)](https://nodejs.org/en/download/releases)
+[!["node v20"](https://img.shields.io/badge/node-v20-026e00.svg)](https://nodejs.org/en/download/releases)
 
 ## Samples
 
