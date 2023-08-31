@@ -1,4 +1,4 @@
-# git-consistent [![Test and Lint](https://github.com/isuke/git-consistent/actions/workflows/main.yml/badge.svg)](https://github.com/isuke/git-consistent/actions/workflows/main.yml) [!["npm"](https://img.shields.io/npm/v/git-consistent.svg)](https://www.npmjs.com/package/git-consistent) [!["git-consistent friendly"](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)]("https://github.com/isuke/git-consistent")
+# git-consistent [![Test and Lint](https://github.com/isuke/git-consistent/actions/workflows/main.yml/badge.svg)](https://github.com/isuke/git-consistent/actions/workflows/main.yml) [!["npm"](https://img.shields.io/npm/v/git-consistent.svg)](https://www.npmjs.com/package/git-consistent) [![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/isuke/advanced-poe-filter/main/LICENSE) [!["git-consistent friendly"](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)]("https://github.com/isuke/git-consistent")
 
 ![](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif)
 
