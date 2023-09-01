@@ -18,7 +18,6 @@
     "git-consistent": "./lib/index.js"
   },
   "scripts": {
-    "deploy": "./deploy.sh",
     "lint": "eslint lib/**/*.js test/**/*.js",
     "fix": "eslint --fix lib/**/*.js test/**/*.js",
     "test": "ava --verbose"
