@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.2.0 2025-06-05
+
+- [up: upgrade dependencies](https://github.com/isuke/git-consistent/commit/ff55c04)
+- [up: upgrade test library](https://github.com/isuke/git-consistent/commit/62ea531)
+- [up: upgrade node to 24.1.0](https://github.com/isuke/git-consistent/commit/f39811b)
+
 ## v1.1.4 2023-09-01
 
 - [up: upgrade dependencies](https://github.com/isuke/git-consistent/commit/88750d2)
