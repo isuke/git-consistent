@@ -22,7 +22,7 @@ Give consistency to your project's git logs.
 ```sh
 $ npm install -g git-consistent
 # or
-$ yarn global add git-consistent
+$ # yarn global add git-consistent # not recommended
 ```
 
 ### Optional settings
@@ -32,11 +32,9 @@ $ yarn global add git-consistent
 $ git config --global alias.con "consistent -i"
 
 # setting editor (for text type input) if you use editor other than vim.
+$ export EDITOR='cursor -w'
+# or
 $ export EDITOR='code -w'
-# or
-$ export EDITOR='atom -w'
-# or
-$ export EDITOR='subl -w'
 # or etc.
 ```
 
