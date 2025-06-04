@@ -8,6 +8,7 @@ Give consistency to your project's git logs.
 [!["node v18"](https://img.shields.io/badge/node-v18-026e00.svg)](https://nodejs.org/en/download/releases)
 [!["node v20"](https://img.shields.io/badge/node-v20-026e00.svg)](https://nodejs.org/en/download/releases)
 [!["node v22"](https://img.shields.io/badge/node-v22-026e00.svg)](https://nodejs.org/en/download/releases)
+[!["node v24"](https://img.shields.io/badge/node-v24-026e00.svg)](https://nodejs.org/en/download/releases)
 
 ## Samples
 
