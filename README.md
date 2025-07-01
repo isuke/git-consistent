@@ -1,115 +1,161 @@
-# git-consistent [![Test and Lint](https://github.com/isuke/git-consistent/actions/workflows/main.yml/badge.svg)](https://github.com/isuke/git-consistent/actions/workflows/main.yml) [!["npm"](https://img.shields.io/npm/v/git-consistent.svg)](https://www.npmjs.com/package/git-consistent) [![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/isuke/advanced-poe-filter/main/LICENSE) [!["git-consistent friendly"](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)]("https://github.com/isuke/git-consistent")
+# git-consistent
 
-![](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif)
+[![Test and Lint](https://github.com/isuke/git-consistent/actions/workflows/main.yml/badge.svg)](https://github.com/isuke/git-consistent/actions/workflows/main.yml)
+[![npm version](https://img.shields.io/npm/v/git-consistent.svg)](https://www.npmjs.com/package/git-consistent)
+[![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/isuke/advanced-poe-filter/main/LICENSE)
+[![git-consistent friendly](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)](https://github.com/isuke/git-consistent)
 
-Give consistency to your project's git logs.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent01.gif" alt="git-consistent demo">
+</p>
 
+**Give consistency to your project's git logs.**
+
+`git-consistent` helps you and your team maintain a consistent and readable git commit history by enforcing a configurable commit message format.
+
+Supported Node.js versions:
 [!["node v16"](https://img.shields.io/badge/node-v16-026e00.svg)](https://nodejs.org/en/download/releases)
 [!["node v18"](https://img.shields.io/badge/node-v18-026e00.svg)](https://nodejs.org/en/download/releases)
 [!["node v20"](https://img.shields.io/badge/node-v20-026e00.svg)](https://nodejs.org/en/download/releases)
 [!["node v22"](https://img.shields.io/badge/node-v22-026e00.svg)](https://nodejs.org/en/download/releases)
 [!["node v24"](https://img.shields.io/badge/node-v24-026e00.svg)](https://nodejs.org/en/download/releases)
 
-## Samples
+## Features
 
-- [commitizen sample](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
-- [issue link sample](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
-- [issue link by branch name sample](https://gist.github.com/isuke/03d83037f13a671d0f0a0af5d76496f8)
-- [emoji sample](https://gist.github.com/isuke/fade15cf04b9e172ee76c2784119b44e)
+- **Interactive & Inline Modes**: Create commits interactively or directly from the command line.
+- **Customizable Commit Format**: Define your own commit message structure with a simple YAML configuration file (`.git_consistent`).
+- **Validation Rules**: Enforce standards like case rules for the subject, character limits, and more.
+- **Dynamic Variables**: Automatically insert values like issue numbers into your commit messages.
+- **Branch Name Parsing**: Extract information (e.g., issue IDs) directly from your git branch name.
+- **Emoji Support**: Easily include emojis in your commit types.
+- **git-duet Integration**: Works with `git-duet` for pair programming commits.
 
-## Install
-
-```sh
-$ npm install -g git-consistent
-# or
-$ # yarn global add git-consistent # not recommended
-```
-
-### Optional settings
+## Installation
 
 ```sh
-# set alias
-$ git config --global alias.con "consistent -i"
-
-# setting editor (for text type input) if you use editor other than vim.
-$ export EDITOR='cursor -w'
-# or
-$ export EDITOR='code -w'
-# or etc.
+npm install -g git-consistent
 ```
 
-## Usage
+### Optional: Set up a Git Alias
 
-### Init
+For easier access, you can create a git alias.
 
 ```sh
-$ git consistent --init
-Use Type? (Y/n): Y
-Use Emoji? (y/N): N
-Does the subject start with lower case? (Y/n): Y
-Does the subject put dot (.) at end? (y/N): Y
-
-Generated '.gitcommit_template' and '.git_consistent'.
-You can edit them freely.
-Enjoy!
+git config --global alias.con "consistent -i"
 ```
 
-### Output usage
+This allows you to run `git con` instead of `git consistent -i`.
+
+### Optional: Configure Your Editor
+
+For multiline commit bodies, `git-consistent` uses the editor defined in your environment variables.
 
 ```sh
-$ git-consistent --help
+# For Visual Studio Code
+export EDITOR='code -w'
 
-  Usage: git-consistent [options]
-
-
-  Options:
-
-    --type <type>            commit type
-    -m, --subject <subject>  The subject contains succinct description of the change
-    --body [body]            The body contains details of the change (default: )
-    ...
-    -V, --version            output the version number
-    -h, --help               output usage information
+# For Cursor
+export EDITOR='cursor -w'
 ```
 
-### Inline mode
+## Getting Started
+
+### 1. Initialize Configuration
+
+Run the init command in your project repository.
 
 ```sh
-$ git consistent --type="feat" --subject="implement new feature" --body="This is amazing feature."
+git consistent --init
 ```
 
-### Interactive mode
+This will ask you a few questions and generate two files:
+- `.git_consistent`: Your configuration file.
+- `.gitcommit_template`: The template for your commit messages.
+
+Feel free to edit these files to match your project's conventions.
+
+### 2. Create a Commit
+
+You can create commits in several ways.
+
+#### Interactive Mode
+
+Run `git consistent` in interactive mode to be prompted for each part of the commit message.
 
 ```sh
 $ git consistent -i
-Select type: feat
-Enter subject: implement new feature
-Enter body multiline:
-This is amazing feature.
+? Select type: feat
+? Enter subject: implement new feature
+? Enter body multiline:
+This is an amazing new feature.
 ```
 
-You can use both mode interactive and inline at the same time.
-In that case, you input value that are not given as option only.
+You can also combine interactive mode with command-line arguments. The tool will only prompt for the missing parts.
 
 ```sh
 $ git consistent -i --subject="implement new feature"
-Select type: feat
-Enter body multiline:
-This is amazing feature.
+? Select type: feat
+? Enter body multiline:
+This is an amazing new feature.
 ```
 
-`--subject` have alias of `-m`.
-You can commit like you normally do!
+#### Inline Mode
 
-```
-$ git config --global alias.con "consistent -i"
-$ git con -m "write README"
-? Select type: docs
-git commit -m "docs: write README"
+Provide all the information using command-line flags.
+
+```sh
+git consistent --type="feat" --subject="implement new feature" --body="This is an amazing feature."
 ```
 
-### Advance
-#### Decorate
+## Configuration (`.git_consistent`)
+
+The `.git_consistent` file allows you to define and customize the structure of your commit messages. It uses a simple YAML-like format.
+
+Here is the basic structure:
+
+```yml
+<term>:
+  <option key>: <option value>
+  <option key>: <option value>
+<term>:
+  <option key>: <option value>
+```
+
+Each `<term>` corresponds to a variable in your `.gitcommit_template` file.
+
+### Configuration Options
+
+| Key | Description | Possible Values |
+| :--- | :--- | :--- |
+| `type` | The input type for the term. | `enum`, `string`, `text`, `variable`, `branch` |
+| `required` | Whether the term is mandatory. | `true`, `false` |
+| `description` | A description shown in interactive mode. | string |
+| `values` | A list of options for `enum` type. | Array of `{ name, description }` objects |
+| `prefix` | A string to add before the input value. | string |
+| `suffix` | A string to add after the input value. | string |
+| `default` | A default value for the term. | string |
+| `origin` | (`type: variable` only) The source term for the variable's value. | string (name of another term) |
+| `regExp` | (`type: branch` only) A regex to extract a value from the branch name. | string |
+| `regExpMatchNum` | (`type: branch` only) The match group index from `regExp`. | integer |
+| `regExpFlag` | (`type: branch` only) A flag for the regex (e.g., `i` for case-insensitive). | string |
+| `rules` | A set of validation rules for the input. | Object |
+
+### Validation Rules (`rules`)
+
+| Rule | Description | Possible Values |
+| :--- | :--- | :--- |
+| `firstLetter` | Enforces the case of the first letter. | `upper`, `lower` |
+| `dotAtEnd` | Requires or disallows a dot at the end. | `true`, `false` |
+| `nonAscii` | Allows or disallows non-ASCII characters. | `true`, `false` |
+| `numberOnly` | Restricts the input to numbers only. | `true`, `false` |
+| `maxLength` | The maximum allowed length of the string. | integer |
+| `minLength` | The minimum allowed length of the string. | integer |
+
+### Examples
+
+#### Decorators
+
+Add a prefix and suffix to a `scope` field.
 
 ```yml
 scope:
@@ -120,7 +166,9 @@ scope:
   suffix: ')'
 ```
 
-#### format check
+#### Validation
+
+Enforce that a `subject` starts with a lowercase letter and has no dot at the end.
 
 ```yml
 subject:
@@ -130,21 +178,13 @@ subject:
   rules:
     firstLetter: lower
     dotAtEnd: false
-    ascii: false
 ```
 
-```sh
-$ git consistent --subject="Write documents."
-subject must be first letter is lowercase.
-subject should not put dot (.) at the end.
+#### Variables
 
-$ git consistent --subject="ドキュメントを書いた"
-subject must be first letter is lowercase.
-subject should only alphabet.
-```
+Create a `githubIssueUrl` variable based on a `githubIssueNum` input.
 
-#### variables
-
+**`.gitcommit_template`:**
 ```
 <githubIssueNum> <subject>
 
@@ -152,11 +192,12 @@ subject should only alphabet.
 <body>
 ```
 
+**`.git_consistent`:**
 ```yml
 githubIssueNum:
   type: string
   required: false
-  description: 'github issue number'
+  description: 'GitHub issue number'
   prefix: 'fix #'
 subject:
   type: string
@@ -165,7 +206,7 @@ subject:
 githubIssueUrl:
   type: variable
   origin: githubIssueNum
-  description: 'github issue url'
+  description: 'GitHub issue URL'
   prefix: 'https://github.com/isuke/git-consistent/issues/'
 body:
   type: text
@@ -189,24 +230,28 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
     This is test.
 ```
 
-#### branch
+#### Extracting from Branch Name
 
+Automatically generate an issue link from a branch name like `issue/123-feature-name`.
+
+**`.gitcommit_template`:**
 ```
 <subject>
 
-<issueLink><body>
+<issueLink>
+<body>
 ```
 
+**`.git_consistent`:**
 ```yml
-...
 issueLink:
   type: branch
   required: false
-  description: 'Github issue link'
-  regExp: 'issue([0-9]+)'
+  description: 'GitHub issue link'
+  regExp: 'issue/([0-9]+)'
+  regExpMatchNum: 1
   prefix: 'https://github.com/you/repository/issues/'
   suffix: "\n"
-...
 ```
 
 ```sh
@@ -227,112 +272,85 @@ Date:   Sat Feb 10 17:40:33 2018 +0900
     This is test.
 ```
 
-#### emoji
+#### Emoji Support
+
+Use an `enum` to provide a list of emojis for the commit type.
 
 ```yml
 emoji:
   type: enum
   required: true
-  description: 'commit type'
+  description: 'Commit type'
   values:
-    -
-      name: ':heavy_plus_sign:'
-      description: 'when implementing function'
-    -
-      name: ':sunny:'
-      description: 'when fixing a bug'
-    -
-      name: ':art:'
-      description: 'when refactoring'
+    - name: ':heavy_plus_sign:'
+      description: 'When implementing a new feature'
+    - name: ':sunny:'
+      description: 'When fixing a bug'
+    - name: ':art:'
+      description: 'When refactoring code'
 ```
 
-![](https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent02_emoji.png)
+This will display a selectable list in interactive mode:
 
-#### git-duet
+<p align="center">
+  <img src="https://raw.githubusercontent.com/isuke/git-consistent/images/git-consistent02_emoji.png" alt="Emoji support">
+</p>
 
-Run [git-duet](https://github.com/git-duet/git-duet) mode when with `-d` option.
+## Integrations
+
+### git-duet
+
+Use the `-d` or `--duet` flag to commit with `git-duet` authors.
 
 ```sh
-$ git consistent -d --type="feat" --subject="duet test" --body=""
-
-$ git log -n 1
-Author: isuke <isuke770@gmail.com>
-Date:   Sat Feb 10 15:13:40 2018 +0900
-
-    feat: duet test
-
-    Signed-off-by: foo <foo@example.con>
+git consistent -d --type="feat" --subject="duet test"
 ```
 
-## Type list sample
+This will add a `Signed-off-by:` trailer to the commit message.
 
-[sample type list](https://github.com/isuke/git-consistent/blob/master/sample_type_list.md)
+## Command Reference
 
-## .git_consistent format
+| Option | Alias | Description |
+| :--- | :--- | :--- |
+| `--duet` | `-d` | Run in `git-duet` mode. |
+| `--dry-run` | `-D` | Run in dry-run mode (don't commit). |
+| `--interactive` | `-i` | Run in interactive mode. |
+| `--silent` | `-S` | Don't show the final `git commit` command. |
+| `--init` | `-I` | Generate configuration files. |
+| `--version` | `-V` | Output the version number. |
+| `--help` | `-h` | Output usage information. |
+| `--type <type>` | | Set the commit type. |
+| `--subject <subject>` | `-m` | Set the commit subject. |
+| `--body [body]` | | Set the commit body. |
 
-```
-<term>:
-  <option key>: <option value>
-  <option key>: <option value>
-  <option key>: <option value>
-<term>:
-  <option key>: <option value>
-  <option key>: <option value>
-  <option key>: <option value>
-<term>:
-  <option key>: <option value>
-  <option key>: <option value>
-  <option key>: <option value>
-```
+## Samples
 
-| key              | description                                        | value                                                                    |
-| ---------------- | -------------------------------------------------- | ------------------------------------------------------------------------ |
-| term             | .gitcommit_template's term                         | string                                                                   |
-| option key       | term's options                                     | `type`, `required`, `description`, `values`, `prefix`, `suffix`, `rules` |
-| `type`           | term's input type                                  | `enum`, `string`, `text`, `variable`, `branch`                           |
-| `required`       | required?                                          | boolean                                                                  |
-| `description`    | term's description                                 | string                                                                   |
-| `values`         | enum's values                                      | Array                                                                    |
-| `prefix`         | a decoration to be attached before the input value | string                                                                   |
-| `suffix`         | a decoration to be attached after the input value  | string                                                                   |
-| `regExp`         | (`type: branch` only) regular expression for extracting values from branch names        | string                              |
-| `regExpMatchNum` | (`type: branch` only) number of values to retrieve from the match specified by `regExp` | string                              |
-| `regExpFlag`     | (`type: branch` only) `regExp`'s falg              | `i`                                                                      |
-| `rules`          | input value format rules                           | Object                                                                   |
-| rule key         | rule's type                                        | `firstLetter`, `dotAtEnd`, `nonAscii`, `numberOnly`                      |
-| `firstLetter`    | upper case or lower case about input value's first letter                               | `upper`, `lower`                    |
-| `dotAtEnd`       | need dot (`.`) input value's last                  | boolean                                                                  |
-| `nonAscii`       | Use not ascii symbols                              | boolean                                                                  |
-| `numberOnly`     | number only?                                       | boolean                                                                  |
-| `maxLength`      | max length of string                               | integer                                                                  |
-| `minLength`      | min length of string                               | integer                                                                  |
+See more examples and advanced use cases:
+- [Commitizen Sample](https://gist.github.com/isuke/183057f709b14b997772ffee0a226e66)
+- [Issue Link Sample](https://gist.github.com/isuke/1cc2931e30b4d59b2b623741ebff242b)
+- [Issue Link from Branch Name Sample](https://gist.github.com/isuke/03d83037f13a671d0f0a0af5d76496f8)
+- [Emoji Sample](https://gist.github.com/isuke/fade15cf04b9e172ee76c2784119b44e)
+- [Sample Type List](https://github.com/isuke/git-consistent/blob/master/sample_type_list.md)
 
-## Command options
+## Badge for Your Project
 
-| Option              | Description               |
-| ------------------- | ------------------------- |
-| `-d, --duet`        | run git-duet mode         |
-| `-D, --dry-run`     | run dry-run mode          |
-| `-i, --interactive` | run interactive mode      |
-| `-S, --silent`      | don't show commit command |
-| `-I, --init`        | generate config files     |
-| `-V, --version`     | output the version number |
-
-## Badges
+Show that your project uses `git-consistent` by adding this badge to your `README.md`.
 
 ![git-consistent friendly](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)
 
-* Markdown
-```
+**Markdown**
+```markdown
 [![git-consistent friendly](https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg)](https://github.com/isuke/git-consistent)
 ```
 
-* reStructuredText
-```
-.. image:: https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg   :alt: git-consistent friendly   :target: https://github.com/isuke/git-consistent
+**reStructuredText**
+```rst
+.. image:: https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg
+   :alt: git-consistent friendly
+   :target: https://github.com/isuke/git-consistent
 ```
 
-* AsciiDoc
-```
+**AsciiDoc**
+```adoc
 image:https://img.shields.io/badge/git--consistent-friendly-brightgreen.svg["git-consistent friendly",link="https://github.com/isuke/git-consistent"]
 ```
