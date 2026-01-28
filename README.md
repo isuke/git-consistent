@@ -23,7 +23,7 @@ Supported Node.js versions:
 ## Features
 
 - **Interactive & Inline Modes**: Create commits interactively or directly from the command line.
-- **Customizable Commit Format**: Define your own commit message structure with a simple YAML configuration file (`.git_consistent`).
+- **Customizable Commit Format**: Define your own commit message structure with a simple YAML configuration file (`.git_consistent.yaml`).
 - **Validation Rules**: Enforce standards like case rules for the subject, character limits, and more.
 - **Dynamic Variables**: Automatically insert values like issue numbers into your commit messages.
 - **Branch Name Parsing**: Extract information (e.g., issue IDs) directly from your git branch name.
@@ -69,7 +69,7 @@ git consistent --init
 ```
 
 This will ask you a few questions and generate two files:
-- `.git_consistent`: Your configuration file.
+- `.git_consistent.yaml`: Your configuration file.
 - `.gitcommit_template`: The template for your commit messages.
 
 Feel free to edit these files to match your project's conventions.
@@ -107,9 +107,9 @@ Provide all the information using command-line flags.
 git consistent --type="feat" --subject="implement new feature" --body="This is an amazing feature."
 ```
 
-## Configuration (`.git_consistent`)
+## Configuration (`.git_consistent.yaml`)
 
-The `.git_consistent` file allows you to define and customize the structure of your commit messages. It uses a simple YAML-like format.
+The `.git_consistent.yaml` file allows you to define and customize the structure of your commit messages. It uses a simple YAML-like format.
 
 Here is the basic structure:
 
@@ -192,7 +192,7 @@ Create a `githubIssueUrl` variable based on a `githubIssueNum` input.
 <body>
 ```
 
-**`.git_consistent`:**
+**`.git_consistent.yaml`:**
 ```yml
 githubIssueNum:
   type: string
@@ -242,7 +242,7 @@ Automatically generate an issue link from a branch name like `issue/123-feature-
 <body>
 ```
 
-**`.git_consistent`:**
+**`.git_consistent.yaml`:**
 ```yml
 issueLink:
   type: branch

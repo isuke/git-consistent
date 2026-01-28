@@ -23,14 +23,14 @@ It is intended to be read by both human contributors and AI assistants.
 - Main tech stack:
   - Node.js ESM (`"type": "module"`)
   - CLI: `commander`, `inquirer`, `prompt-sync`
-  - Configuration: `.git_consistent` (YAML) and `.gitcommit_template`
+  - Configuration: `.git_consistent.yaml` (YAML) and `.gitcommit_template`
   - Tests: `ava`
   - Lint / formatting: `eslint` + `prettier`
 
 **Key files / directories**
 
 - `lib/` – CLI implementation
-- `.git_consistent` – sample configuration for user projects
+- `.git_consistent.yaml` – sample configuration for user projects
 - `.gitcommit_template` – commit template
 - `test/` – AVA tests
 - `.github/workflows/main.yml` – CI (lint + test)
@@ -63,7 +63,7 @@ It is intended to be read by both human contributors and AI assistants.
 
 ---
 
-## 5. `.git_consistent` and `.gitcommit_template`
+## 5. `.git_consistent.yaml` and `.gitcommit_template`
 
 - These files directly affect users’ commit workflows, so **prioritize compatibility and clarity**.
 - When changing samples:
