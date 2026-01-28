@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.3.0 2026-01-29
+
+- [feat: change file name from .git_consistent to .git_consistent.yaml](https://github.com/isuke/git-consistent/commit/820e9b0)
+
 ## v1.2.0 2025-06-05
 
 - [up: upgrade dependencies](https://github.com/isuke/git-consistent/commit/ff55c04)
